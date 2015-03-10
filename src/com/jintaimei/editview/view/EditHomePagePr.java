@@ -1,10 +1,12 @@
 package com.jintaimei.editview.view;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Component;
@@ -15,6 +17,7 @@ import com.bstek.dorado.data.provider.Page;
 import com.bstek.dorado.uploader.UploadFile;
 import com.bstek.dorado.uploader.annotation.FileResolver;
 import com.bstek.dorado.web.DoradoContext;
+import com.jintaimei.common.constant.AwdConstants;
 import com.jintaimei.common.util.AwdUtils;
 import com.jintaimei.editview.bean.HomePage;
 import com.jintaimei.editview.bean.mapper.HomePageMapper;
@@ -41,29 +44,24 @@ public class EditHomePagePr extends CoreJdbcDao {
 	
 	@FileResolver
 	public String uploadImg(UploadFile file, Map<String, Object> parameter) throws Exception {
-    	String saveImgFile = "/images/upload";
     	HttpServletRequest request = DoradoContext.getCurrent().getRequest();
-    	String path = request.getSession().getServletContext().getRealPath(saveImgFile);
-    	String copyPath = "/Users/raymondwu/backupimg";
+    	String path = request.getSession().getServletContext().getRealPath(AwdConstants.ImgUrl.PROJECT_URL);
     	String date = AwdUtils.getDateToString(new Date(), "yyyyMMddHHmmss");
     	String fileType = file.getFileName().substring(file.getFileName().indexOf("."));
     	String newFileName = date+fileType;
     	File targetFile = new File(path,newFileName);
-    	File copyFile = new File(copyPath,newFileName);
-    	if(!targetFile.exists()){
-    		if(targetFile.mkdir()){
-    			targetFile.mkdirs();
-    		}
+    	File copyFile = new File(AwdConstants.ImgUrl.BACKUP_URL,newFileName);
+    	if(!targetFile.isDirectory()){
+    		targetFile.mkdirs();
     	}
-    	if(!copyFile.exists()){
-    		if(copyFile.mkdir()){
-    			copyFile.mkdirs();
-    		}
+    	if(!copyFile.isDirectory()){
+			copyFile.mkdirs();
     	}
     	file.transferTo(targetFile);
-    	file.transferTo(copyFile);
- 
-        return saveImgFile+newFileName;
+    	//写入一个图片到指定的地址进行备份
+    	BufferedImage image = ImageIO.read(targetFile);
+    	ImageIO.write(image, fileType.substring(1,fileType.length()), copyFile);
+        return AwdConstants.ImgUrl.PROJECT_URL+"/"+newFileName;
     }
 	
 }
