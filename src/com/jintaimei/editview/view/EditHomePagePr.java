@@ -60,7 +60,6 @@ public class EditHomePagePr extends CoreJdbcDao {
     			copyFile.mkdirs();
     		}
     	}
-    	System.out.println("******");
     	file.transferTo(targetFile);
     	file.transferTo(copyFile);
  
