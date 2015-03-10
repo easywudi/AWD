@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model>
+    <DataType name="dtHomePage">
+      <Property name="creationType">com.jintaimei.editview.bean.HomePage</Property>
+      <PropertyDef name="id">
+        <Property name="dataType">String</Property>
+        <Property name="label">主键</Property>
+      </PropertyDef>
+      <PropertyDef name="projectTitle">
+        <Property name="dataType">String</Property>
+        <Property name="label">产品标题</Property>
+      </PropertyDef>
+      <PropertyDef name="projectDesc">
+        <Property name="dataType">String</Property>
+        <Property name="label">产品描述</Property>
+      </PropertyDef>
+      <PropertyDef name="imgFile">
+        <Property name="dataType">String</Property>
+        <Property name="label">图片地址</Property>
+      </PropertyDef>
+      <PropertyDef name="detailLink">
+        <Property name="dataType">String</Property>
+        <Property name="label">链接页面</Property>
+      </PropertyDef>
+    </DataType>
+  </Model>
+  <View>
+    <DataSet id="dsHomePage">
+      <Property name="dataType">[dtHomePage]</Property>
+      <Property name="pageSize">20</Property>
+      <Property name="dataProvider">editHomePagePr#getHomePage</Property>
+    </DataSet>
+    <ToolBar>
+      <DataPilot/>
+      <ToolBarButton>
+        <ClientEvent name="onClick">var editDialog = view.get(&quot;#editDialog&quot;);
+editDialog.show();
+</ClientEvent>
+        <Property name="caption">编辑</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -60px -20px</Property>
+      </ToolBarButton>
+    </ToolBar>
+    <DataGrid id="homeGrid">
+      <Property name="dataSet">dsHomePage</Property>
+      <Property name="readOnly">true</Property>
+      <Property name="rowHeight">50</Property>
+      <RowNumColumn/>
+      <DataColumn id="imgShow" name="id">
+        <ClientEvent name="onRenderCell">//var path = &quot;${request.getContextPath()}&quot;;
+$(arg.dom).empty().xCreate(
+		{
+			tagName : &quot;IMG&quot;,
+			src : $url(&quot;>&quot;
+					+ arg.data.get(&quot;imgFile&quot;) ),
+			style : &quot;width: 64px; height: 64px;margin: 2px&quot;
+		});
+
+dorado.TipManager.initTip(arg.dom.parentNode, {
+	content : {
+		tagName : &quot;IMG&quot;,
+		src : $url(&quot;>&quot;
+				+ arg.data.get(&quot;imgFile&quot;) ),
+		style : &quot;width: 128px; height: 128px; margin: 8px&quot;
+	},
+	arrowDirection : &quot;top&quot;,
+	arrowAlign : &quot;left&quot;
+});</ClientEvent>
+        <Property name="property">imgFile</Property>
+        <Property name="supportsOptionMenu">false</Property>
+        <Property name="caption">图片</Property>
+        <Property name="width">100</Property>
+      </DataColumn>
+      <DataColumn name="projectTitle">
+        <Property name="property">projectTitle</Property>
+      </DataColumn>
+      <DataColumn name="projectDesc">
+        <Property name="property">projectDesc</Property>
+      </DataColumn>
+    </DataGrid>
+    <Dialog id="editDialog">
+      <ClientEvent name="onShow">var htmlContainer = view.get(&quot;#imgHtml&quot;);
+var currentData = view.get(&quot;#dsHomePage&quot;).getData(&quot;#&quot;);
+var path = &quot;${request.getContextPath()}&quot;;
+htmlContainer.set(&quot;content&quot;,&quot;&lt;div style='text-align:center;'>&lt;img id='preShowImg' src='&quot;+path+currentData.get(&quot;imgFile&quot;)+&quot;' style='width: 450px; height: 330px;margin: 2px' />&lt;div/>&quot;);
+/*
+htmlContainer.getDom().xCreate({
+		src : $url(&quot;>&quot;
+				+ currentData.get(&quot;imgFile&quot;) ),
+		style : &quot;width: 128px; height: 128px;margin: 2px&quot;
+});
+*/</ClientEvent>
+      <Property name="width">800</Property>
+      <Property name="height">600</Property>
+      <Buttons>
+        <Button id="btnUpload">
+          <Property name="caption">上传图片</Property>
+          <Property name="action">imgUpload</Property>
+        </Button>
+        <Button>
+          <Property name="caption">保存</Property>
+          <Property name="icon">url(>skin>common/icons.gif) -20px 0px</Property>
+        </Button>
+        <Button>
+          <Property name="caption">取消</Property>
+          <Property name="icon">url(>skin>common/icons.gif) -40px 0px</Property>
+        </Button>
+      </Buttons>
+      <Children>
+        <AutoForm>
+          <Property name="dataSet">dsHomePage</Property>
+          <Property name="dataPath">#</Property>
+          <Property name="cols">*</Property>
+          <AutoFormElement>
+            <Property name="name">projectTitle</Property>
+            <Property name="property">projectTitle</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">projectDesc</Property>
+            <Property name="property">projectDesc</Property>
+            <Editor>
+              <TextArea/>
+            </Editor>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">imgFile</Property>
+            <Property name="property">imgFile</Property>
+            <Editor/>
+          </AutoFormElement>
+        </AutoForm>
+        <Panel>
+          <Buttons/>
+          <Children>
+            <HtmlContainer id="imgHtml"/>
+          </Children>
+          <Tools/>
+        </Panel>
+      </Children>
+      <Tools/>
+    </Dialog>
+    <UploadAction id="imgUpload">
+      <Property name="fileResolver">editHomePagePr#uploadImg</Property>
+      <Filters/>
+    </UploadAction>
+  </View>
+</ViewConfig>

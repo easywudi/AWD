@@ -1,0 +1,398 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>广东金钛镁铝业</title>
+
+<link rel="stylesheet" type="text/css" media="all" href="../css/style.css">
+<link rel="stylesheet" type="text/css" media="all" href="../css/grid.css">
+<link rel="stylesheet" type="text/css" media="all" href="../css/prettyPhoto.css">
+<link rel="stylesheet" id="contact-form-7-css" href="../css/styles.css" type="text/css" media="all">
+<script type="text/javascript" src="../js/jquery-1.4.4.min.js"></script><style type="text/css">.cf-hidden { display: none; } .cf-invisible { visibility: hidden; }</style>
+<script type="text/javascript" src="../js/superfish.js"></script>
+<script type="text/javascript" src="../js/jquery.prettyPhoto.js"></script>
+<script type="text/javascript" src="../js/jquery.nivo.slider.pack.js"></script>
+<script type="text/javascript" src="../js/jquery.loader.js"></script>
+<script type="text/javascript" src="../js/comment-reply.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/social_widget.css">
+<script type="text/javascript">
+  	// initialise plugins
+		jQuery(function(){
+			// main navigation init
+			jQuery('ul.sf-menu').superfish({
+				animation:   {opacity:'show', height:'show'},
+				autoArrows:  false,                           // disable generation of arrow mark-up 
+        		dropShadows: false                            // disable drop shadows 
+			});
+			
+		});
+  </script>
+<script type="text/javascript">
+		jQuery(window).load(function() {
+			// nivoslider init
+			jQuery('#slider').nivoSlider({
+				effect: 'fold',
+				animSpeed:500,
+				pauseTime:5000,
+				startSlide:2,
+				slices:20,
+				directionNav:false,
+				directionNavHide:false,
+				controlNav:true,
+				controlNavThumbs:true,
+				keyboardNav:true,
+				pauseOnHover:true,
+				captionOpacity:0.7			});
+		});
+	</script>
+
+
+</head>
+<body
+	class="page page-id-72 page-parent page-template page-template-page-portfolio-full-php">
+	<div id="main">
+		<header>
+		<div class="container_24">
+			<div class="logo">
+				<h2>
+					<a href=""
+						title="Interior and Furniture">金钛镁</a>
+				</h2>
+			</div>
+			<nav class="primary">
+			<ul id="topnav" class="sf-menu sf-js-enabled">
+				<li id="menu-item-32"
+					class="menu-item menu-item-type-post_type menu-item-32"><a
+					href="index.jsp">展示中心</a></li>
+				<li id="menu-item-77"
+					class="menu-item menu-item-type-post_type current-menu-item page_item page-item-72 current_page_item menu-item-77"><a
+					href="project.jsp">产品中心</a>
+					<ul class="sub-menu" style="display: none; visibility: hidden;">
+						<li id="menu-item-95"
+							class="menu-item menu-item-type-post_type menu-item-95"><a
+							href="#">铝合金</a></li>
+						<li id="menu-item-94"
+							class="menu-item menu-item-type-post_type menu-item-94"><a
+							href="#">铝合金配件</a></li>
+						<li id="menu-item-93"
+							class="menu-item menu-item-type-post_type menu-item-93"><a
+							href="#">Kitchens</a></li>
+					</ul></li>
+				<li id="menu-item-7"
+					class="menu-item menu-item-type-post_type menu-item-7"><a
+					href="aboutus.jsp">关于我们</a></li>
+				<li id="menu-item-179"
+					class="menu-item menu-item-type-post_type menu-item-179"><a
+					href="http://cms.template-help.com/wordpress_32824/?page_id=177">Our
+						blog</a></li>
+<!-- 				<li id="menu-item-32" -->
+<!-- 					class="menu-item menu-item-type-post_type menu-item-32"><a -->
+<!-- 					href="http://cms.template-help.com/wordpress_32824/?page_id=30">Services</a></li> -->
+				<li id="menu-item-59"
+					class="menu-item menu-item-type-post_type menu-item-59"><a
+					href="contactus.jsp">联系我们</a></li>
+			</ul>
+			</nav>
+		</div>
+		</header>
+		<div class="primary_content_wrap">
+			<div class="container_24 clearfix">
+				<div id="full-width">
+					<div id="content">
+						<div class="header-title">
+							<h1>产品中心</h1>
+						</div>
+						<div id="gallery">
+							<ul class="portfolio">
+								<li class=""><a class="image-wrap"
+									href=""
+									rel="prettyPhoto[gallery]" title="Kitchen item #5"><img
+										width="290" height="150"
+										src="../images/kitchen_1-290x150.jpg"
+										class="attachment-portfolio-post-thumbnail wp-post-image"
+										alt="kitchen_1" title="kitchen_1" style="display: block;"><span
+										class="zoom-icon"></span></a>
+									<div class="folio-desc">
+										<h4>
+											<a
+												href="http://cms.template-help.com/wordpress_32824/?portfolio=project-3_5">Kitchen
+												item #5</a>
+										</h4>
+										<p class="excerpt">Lorem ipsum dolor sit amet, consectetur
+											adipiscing elit. Aenean facilisis...</p>
+										<a
+											href="http://cms.template-help.com/wordpress_32824/?portfolio=project-3_5"
+											class="button">Read more</a>
+									</div></li>
+								<li class=""><a class="image-wrap"
+									href="detail.jsp"
+									rel="prettyPhoto[gallery]" title="Kitchen item #4"><img
+										width="290" height="150"
+										src="../images/kitchen_4-290x150.jpg"
+										class="attachment-portfolio-post-thumbnail wp-post-image"
+										alt="kitchen_4" title="kitchen_4" style="display: block;"><span
+										class="zoom-icon"></span></a>
+									<div class="folio-desc">
+										<h4>
+											<a href="detail.jsp">Kitchen item #4</a>
+										</h4>
+										<p class="excerpt">Lorem ipsum dolor sit amet, consectetur
+											adipiscing elit. Aenean facilisis...</p>
+										<a href="detail.jsp"
+											class="button">Read more</a>
+									</div></li>
+								<li class="nomargin"><a class="image-wrap"
+									href="http://cms.template-help.com/wordpress_32824/wp-content/uploads/2011/02/kitchen_3.jpg"
+									rel="prettyPhoto[gallery]" title="Kitchen item #3"><img
+										width="290" height="150"
+										src="../images/kitchen_3-290x150.jpg"
+										class="attachment-portfolio-post-thumbnail wp-post-image"
+										alt="kitchen_3" title="kitchen_3" style="display: block;"><span
+										class="zoom-icon"></span></a>
+									<div class="folio-desc">
+										<h4>
+											<a
+												href="http://cms.template-help.com/wordpress_32824/?portfolio=project-3_3">Kitchen
+												item #3</a>
+										</h4>
+										<p class="excerpt">Lorem ipsum dolor sit amet, consectetur
+											adipiscing elit. Aenean facilisis...</p>
+										<a
+											href="http://cms.template-help.com/wordpress_32824/?portfolio=project-3_3"
+											class="button">Read more</a>
+									</div></li>
+								<li class=""><a class="image-wrap"
+									href="http://cms.template-help.com/wordpress_32824/wp-content/uploads/2011/02/kitchen_2.jpg"
+									rel="prettyPhoto[gallery]" title="Kitchen item #2"><img
+										width="290" height="150"
+										src="../images/kitchen_2-290x150.jpg"
+										class="attachment-portfolio-post-thumbnail wp-post-image"
+										alt="kitchen_2" title="kitchen_2" style="display: block;"><span
+										class="zoom-icon"></span></a>
+									<div class="folio-desc">
+										<h4>
+											<a
+												href="http://cms.template-help.com/wordpress_32824/?portfolio=project-3_2">Kitchen
+												item #2</a>
+										</h4>
+										<p class="excerpt">Lorem ipsum dolor sit amet, consectetur
+											adipiscing elit. Aenean facilisis...</p>
+										<a
+											href="http://cms.template-help.com/wordpress_32824/?portfolio=project-3_2"
+											class="button">Read more</a>
+									</div></li>
+								<li class=""><a class="image-wrap"
+									href="http://cms.template-help.com/wordpress_32824/wp-content/uploads/2011/02/kitchen_5.jpg"
+									rel="prettyPhoto[gallery]" title="Kitchen item #1"><img
+										width="290" height="150"
+										src="../images/kitchen_5-290x150.jpg"
+										class="attachment-portfolio-post-thumbnail wp-post-image"
+										alt="kitchen_5" title="kitchen_5" style="display: block;"><span
+										class="zoom-icon"></span></a>
+									<div class="folio-desc">
+										<h4>
+											<a
+												href="http://cms.template-help.com/wordpress_32824/?portfolio=project-3_1">Kitchen
+												item #1</a>
+										</h4>
+										<p class="excerpt">Lorem ipsum dolor sit amet, consectetur
+											adipiscing elit. Aenean facilisis...</p>
+										<a
+											href="http://cms.template-help.com/wordpress_32824/?portfolio=project-3_1"
+											class="button">Read more</a>
+									</div></li>
+								<li class="nomargin"><a class="image-wrap"
+									href="http://cms.template-help.com/wordpress_32824/wp-content/uploads/2011/02/bedroom_4.jpg"
+									rel="prettyPhoto[gallery]" title="Bedroom item #4"><img
+										width="290" height="150"
+										src="../images/bedroom_4-290x150.jpg"
+										class="attachment-portfolio-post-thumbnail wp-post-image"
+										alt="bedroom_4" title="bedroom_4" style="display: block;"><span
+										class="zoom-icon"></span></a>
+									<div class="folio-desc">
+										<h4>
+											<a
+												href="http://cms.template-help.com/wordpress_32824/?portfolio=project-2_4">Bedroom
+												item #4</a>
+										</h4>
+										<p class="excerpt">Lorem ipsum dolor sit amet, consectetur
+											adipiscing elit. Aenean facilisis...</p>
+										<a
+											href="http://cms.template-help.com/wordpress_32824/?portfolio=project-2_4"
+											class="button">Read more</a>
+									</div></li>
+								<li class=""><a class="image-wrap"
+									href="http://cms.template-help.com/wordpress_32824/wp-content/uploads/2011/02/bedroom_3.jpg"
+									rel="prettyPhoto[gallery]" title="Bedroom item #3"><img
+										width="290" height="150"
+										src="../images/bedroom_3-290x150.jpg"
+										class="attachment-portfolio-post-thumbnail wp-post-image"
+										alt="bedroom_3" title="bedroom_3" style="display: block;"><span
+										class="zoom-icon"></span></a>
+									<div class="folio-desc">
+										<h4>
+											<a
+												href="http://cms.template-help.com/wordpress_32824/?portfolio=project-2_3">Bedroom
+												item #3</a>
+										</h4>
+										<p class="excerpt">Lorem ipsum dolor sit amet, consectetur
+											adipiscing elit. Aenean facilisis...</p>
+										<a
+											href="http://cms.template-help.com/wordpress_32824/?portfolio=project-2_3"
+											class="button">Read more</a>
+									</div></li>
+								<li class=""><a class="image-wrap"
+									href="http://cms.template-help.com/wordpress_32824/wp-content/uploads/2011/02/bedroom_2.jpg"
+									rel="prettyPhoto[gallery]" title="Bedroom item #2"><img
+										width="290" height="150"
+										src="../images/bedroom_2-290x150.jpg"
+										class="attachment-portfolio-post-thumbnail wp-post-image"
+										alt="bedroom_2" title="bedroom_2" style="display: block;"><span
+										class="zoom-icon"></span></a>
+									<div class="folio-desc">
+										<h4>
+											<a
+												href="http://cms.template-help.com/wordpress_32824/?portfolio=project-2_2">Bedroom
+												item #2</a>
+										</h4>
+										<p class="excerpt">Lorem ipsum dolor sit amet, consectetur
+											adipiscing elit. Aenean facilisis...</p>
+										<a
+											href="http://cms.template-help.com/wordpress_32824/?portfolio=project-2_2"
+											class="button">Read more</a>
+									</div></li>
+								<li class="nomargin"><a class="image-wrap"
+									href="http://cms.template-help.com/wordpress_32824/wp-content/uploads/2011/02/bedroom_1.jpg"
+									rel="prettyPhoto[gallery]" title="Bedroom item #1"><img
+										width="290" height="150"
+										src="../images/bedroom_1-290x150.jpg"
+										class="attachment-portfolio-post-thumbnail wp-post-image"
+										alt="bedroom_1" title="bedroom_1" style="display: block;"><span
+										class="zoom-icon"></span></a>
+									<div class="folio-desc">
+										<h4>
+											<a
+												href="http://cms.template-help.com/wordpress_32824/?portfolio=project-2_1">Bedroom
+												item #1</a>
+										</h4>
+										<p class="excerpt">Lorem ipsum dolor sit amet, consectetur
+											adipiscing elit. Aenean facilisis...</p>
+										<a
+											href="http://cms.template-help.com/wordpress_32824/?portfolio=project-2_1"
+											class="button">Read more</a>
+									</div></li>
+							</ul>
+							<div class="clear"></div>
+						</div>
+						<nav class="oldernewer">
+						<div class="older">
+							<p>
+								<a
+									href="http://cms.template-help.com/wordpress_32824/?page_id=72&paged=2">«
+									购买铝材</a>
+							</p>
+						</div>
+						<div class="newer">
+							<p></p>
+						</div>
+						</nav>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<footer id="footer">
+		<div class="container_24">
+			<div id="widget-footer" class="clearfix">
+				<div id="categories-4" class="grid_5 suffix_2">
+					<h3>联系方式</h3>
+					<ul>
+<!-- 						<li class="cat-item cat-item-15"><a -->
+<!-- 							href="#" -->
+<!-- 							title="View all posts filed under Who We Are"></a></li> -->
+						<li class="cat-item cat-item-6"><a
+							href="#"
+							title="电话:0311-86335588">电话:&nbsp;&nbsp;&nbsp;0311-86335588</a></li>
+						<li class="cat-item cat-item-17"><a
+							href="#"
+							title="传真:0311-88756660">传真:&nbsp;&nbsp;&nbsp;0311-88756660</a></li>
+						<li class="cat-item cat-item-14"><a
+							href="#"
+							title="QQ:18832132988">&nbsp;&nbsp;QQ:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18832132988</a></li>
+					</ul>
+				</div>
+				<div id="nav_menu-5" class="grid_5 suffix_2">
+					<h3>地址</h3>
+					<div class="menu-our-tips-container">
+						<ul id="menu-our-tips" class="menu">
+							<li id="menu-item-169"
+								class="menu-item menu-item-type-custom menu-item-169"><a
+								href="#">石家庄市正定新区森通建材市场12-24号</a></li>
+							<li id="menu-item-170"
+								class="menu-item menu-item-type-custom menu-item-170"></li>
+						</ul>
+					</div>
+				</div>
+				<div id="text-2" class="grid_10">
+					<h3>联系我们</h3>
+					<div class="textwidget">
+						<div class="wpcf7" id="wpcf7-f3-w1-o1">
+							<form
+								action=""
+								method="post" class="wpcf7-form">
+								<div style="display: none;">
+									<input type="hidden" name="_wpcf7" value="3"> <input
+										type="hidden" name="_wpcf7_version" value="2.4.3"> <input
+										type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f3-w1-o1">
+								</div>
+								<p class="field">
+									<span class="wpcf7-form-control-wrap email-807"><input
+										type="text" name="email-807" value=""
+										class="wpcf7-text wpcf7-validates-as-email wpcf7-validates-as-required wpcf7-use-title-as-watermark watermark"
+										size="40" title="您的联系方式:"></span>
+								</p>
+								<p class="field">
+									<span class="wpcf7-form-control-wrap textarea"><textarea
+											name="textarea"
+											class="wpcf7-use-title-as-watermark watermark" cols="40"
+											rows="10" title="您的留言:"></textarea></span>
+								</p>
+								<p class="submit-wrap">
+									<input type="submit" value="提交" class="wpcf7-submit"><img
+										class="ajax-loader" style="visibility: hidden;"
+										alt="Sending ..." src="../images/ajax-loader.gif">
+								</p>
+								<div class="wpcf7-response-output wpcf7-display-none"></div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="copy wrapper">
+				<div class="fleft">
+					金钛镁 © 2015&nbsp; |&nbsp; <a
+						href="#">保留所有权利</a><br>
+				</div>
+				<div class="fright f_email">
+					E-mail: <a href="mailto:18832132988@qq.com">18832132988@qq.com<script
+							cf-hash="f9e31" type="text/javascript">
+/* <![CDATA[ */!function(){try{var t="currentScript"in document?document.currentScript:function(){for(var t=document.getElementsByTagName("script"),e=t.length;e--;)if(t[e].getAttribute("cf-hash"))return t[e]}();if(t&&t.previousSibling){var e,r,n,i,c=t.previousSibling,a=c.getAttribute("data-cfemail");if(a){for(e="",r=parseInt(a.substr(0,2),16),n=2;a.length-n;n+=2)i=parseInt(a.substr(n,2),16)^r,e+=String.fromCharCode(i);e=document.createTextNode(e),c.parentNode.replaceChild(e,c)}}}catch(u){}}();/* ]]> */</script></a>
+				</div>
+			</div>
+		</div>
+		</footer>
+	</div>
+	<script type="text/javascript" src="../js/jquery.form.js"></script>
+	<script type="text/javascript" src="../js/scripts.js"></script>
+
+	<script type="text/javascript">
+/* <![CDATA[ */
+(function(){try{var s,a,i,j,r,c,l=document.getElementsByTagName("a"),t=document.createElement("textarea");for(i=0;l.length-i;i++){try{a=l[i].getAttribute("href");if(a&&a.indexOf("/cdn-cgi/l/email-protection") > -1  && (a.length > 28)){s='';j=27+ 1 + a.indexOf("/cdn-cgi/l/email-protection");if (a.length > j) {r=parseInt(a.substr(j,2),16);for(j+=2;a.length>j&&a.substr(j,1)!='X';j+=2){c=parseInt(a.substr(j,2),16)^r;s+=String.fromCharCode(c);}j+=1;s+=a.substr(j,a.length-j);}t.innerHTML=s.replace(/</g,"&lt;").replace(/>/g,"&gt;");l[i].setAttribute("href","mailto:"+t.value);}}catch(e){}}}catch(e){}})();
+/* ]]> */
+</script>
+
+
+</body>
+</html>
