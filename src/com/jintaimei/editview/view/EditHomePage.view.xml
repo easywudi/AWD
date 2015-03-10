@@ -92,18 +92,33 @@ htmlContainer.getDom().xCreate({
 		style : &quot;width: 128px; height: 128px;margin: 2px&quot;
 });
 */</ClientEvent>
+      <ClientEvent name="onHide">var dsHomePage = view.get(&quot;#dsHomePage&quot;);
+dsHomePage.flushAsync();</ClientEvent>
       <Property name="width">800</Property>
       <Property name="height">600</Property>
       <Buttons>
         <Button id="btnUpload">
           <Property name="caption">上传图片</Property>
           <Property name="action">imgUpload</Property>
+          <Property name="icon">url(>skin>common/icons.gif) -280px 0px</Property>
         </Button>
         <Button>
+          <ClientEvent name="onClick">var updateAction = view.get(&quot;#updateAction&quot;);
+var currentData = view.get(&quot;#dsHomePage)&quot;).getData(&quot;#&quot;);
+var tip = new dorado.widget.NotifyTip();
+
+updateAction.set(&quot;parameter&quot;,currentData).execute(function(){
+	tip.set('text','保存成功!');
+	tip.show();
+});
+</ClientEvent>
           <Property name="caption">保存</Property>
           <Property name="icon">url(>skin>common/icons.gif) -20px 0px</Property>
         </Button>
         <Button>
+          <ClientEvent name="onClick">var dialog = view.get(&quot;#editDialog&quot;);
+dialog.hide();
+</ClientEvent>
           <Property name="caption">取消</Property>
           <Property name="icon">url(>skin>common/icons.gif) -40px 0px</Property>
         </Button>
@@ -128,6 +143,7 @@ htmlContainer.getDom().xCreate({
           <AutoFormElement>
             <Property name="name">imgFile</Property>
             <Property name="property">imgFile</Property>
+            <Property name="readOnly">true</Property>
             <Editor/>
           </AutoFormElement>
         </AutoForm>
@@ -142,8 +158,19 @@ htmlContainer.getDom().xCreate({
       <Tools/>
     </Dialog>
     <UploadAction id="imgUpload">
+      <ClientEvent name="onFileUploaded">var file = arg.returnValue;
+var currentData = view.get(&quot;#dsHomePage&quot;).getData(&quot;#&quot;);
+currentData.set(&quot;imgFile&quot;,file);
+var htmlContainer = view.get(&quot;#imgHtml&quot;);
+var path = &quot;${request.getContextPath()}&quot;;
+htmlContainer.set(&quot;content&quot;,&quot;&lt;div style='text-align:center;'>&lt;img id='preShowImg' src='&quot;+path+currentData.get(&quot;imgFile&quot;)+&quot;' style='width: 450px; height: 330px;margin: 2px' />&lt;div/>&quot;);
+
+</ClientEvent>
       <Property name="fileResolver">editHomePagePr#uploadImg</Property>
       <Filters/>
     </UploadAction>
+    <AjaxAction id="updateAction">
+      <Property name="service">editHomePagePr#updateHomePage</Property>
+    </AjaxAction>
   </View>
 </ViewConfig>

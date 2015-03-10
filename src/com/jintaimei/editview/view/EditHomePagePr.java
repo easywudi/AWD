@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import com.bstek.bdf2.core.CoreJdbcDao;
 import com.bstek.dorado.annotation.DataProvider;
+import com.bstek.dorado.annotation.Expose;
 import com.bstek.dorado.data.provider.Page;
 import com.bstek.dorado.uploader.UploadFile;
 import com.bstek.dorado.uploader.annotation.FileResolver;
@@ -63,5 +64,11 @@ public class EditHomePagePr extends CoreJdbcDao {
     	ImageIO.write(image, fileType.substring(1,fileType.length()), copyFile);
         return AwdConstants.ImgUrl.PROJECT_URL+"/"+newFileName;
     }
+	
+	@Expose
+	public void updateHomePage(Map<String,Object> param) {
+		
+	}
+	
 	
 }
