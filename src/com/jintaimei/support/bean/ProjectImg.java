@@ -1,4 +1,4 @@
-package com.jintaimei.editview.bean;
+package com.jintaimei.support.bean;
 
 import java.io.Serializable;
 import java.util.Date;

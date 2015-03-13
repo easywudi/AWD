@@ -1,4 +1,4 @@
-package com.jintaimei.editview.view;
+package com.jintaimei.support.view;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -20,8 +20,8 @@ import com.bstek.dorado.uploader.annotation.FileResolver;
 import com.bstek.dorado.web.DoradoContext;
 import com.jintaimei.common.constant.AwdConstants;
 import com.jintaimei.common.util.AwdUtils;
-import com.jintaimei.editview.bean.HomePage;
-import com.jintaimei.editview.bean.mapper.HomePageMapper;
+import com.jintaimei.support.bean.HomePage;
+import com.jintaimei.support.bean.mapper.HomePageMapper;
 
 @Component("editHomePagePr")
 public class EditHomePagePr extends CoreJdbcDao {

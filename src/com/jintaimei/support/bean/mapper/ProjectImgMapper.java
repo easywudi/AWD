@@ -1,11 +1,11 @@
-package com.jintaimei.editview.bean.mapper;
+package com.jintaimei.support.bean.mapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import com.jintaimei.editview.bean.ProjectImg;
+import com.jintaimei.support.bean.ProjectImg;
 
 public class ProjectImgMapper implements RowMapper<ProjectImg> {
 

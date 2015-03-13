@@ -1,11 +1,11 @@
-package com.jintaimei.editview.bean.mapper;
+package com.jintaimei.support.bean.mapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import com.jintaimei.editview.bean.ProjectDesc;
+import com.jintaimei.support.bean.ProjectDesc;
 
 public class ProjectDescMapper implements RowMapper<ProjectDesc> {
 
