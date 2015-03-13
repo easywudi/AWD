@@ -117,10 +117,11 @@ dsHomePage.flushAsync();</ClientEvent>
           <ClientEvent name="onClick">var updateAction = view.get(&quot;#updateAction&quot;);
 var currentData = view.get(&quot;#dsHomePage&quot;).getData(&quot;#&quot;);
 var tip = new dorado.widget.NotifyTip();
-
+var dialog = view.get(&quot;#editDialog&quot;);
 updateAction.set(&quot;parameter&quot;,currentData).execute(function(){
 	tip.set('text','保存成功!');
 	tip.show();
+	dialog.hide();
 });
 </ClientEvent>
           <Property name="caption">保存</Property>
@@ -199,6 +200,10 @@ dialog.hide();
           <Property name="dataSet">dsHomePage</Property>
           <Property name="readOnly">false</Property>
           <Property name="rowHeight">50</Property>
+          <DataColumn name="showOrder">
+            <Property name="property">showOrder</Property>
+            <Property name="width">100</Property>
+          </DataColumn>
           <DataColumn name="id">
             <ClientEvent name="onRenderCell">//var path = &quot;${request.getContextPath()}&quot;;
 $(arg.dom).empty().xCreate(
@@ -232,10 +237,6 @@ dorado.TipManager.initTip(arg.dom.parentNode, {
           <DataColumn name="projectDesc">
             <Property name="property">projectDesc</Property>
             <Property name="readOnly">true</Property>
-          </DataColumn>
-          <DataColumn name="showOrder">
-            <Property name="property">showOrder</Property>
-            <Property name="width">100</Property>
           </DataColumn>
         </DataGrid>
       </Children>
