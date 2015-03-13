@@ -24,7 +24,7 @@ import com.jintaimei.support.bean.HomePage;
 import com.jintaimei.support.bean.mapper.HomePageMapper;
 
 @Component("editHomePagePr")
-public class EditHomePagePr extends CoreJdbcDao {
+public class HomePagePr extends CoreJdbcDao {
 	
 	@DataProvider
 	public void getHomePage(Page<HomePage> page) throws Exception {

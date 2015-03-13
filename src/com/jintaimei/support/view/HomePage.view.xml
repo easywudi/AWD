@@ -4,7 +4,7 @@
   <Context/>
   <Model>
     <DataType name="dtHomePage">
-      <Property name="creationType">com.jintaimei.editview.bean.HomePage</Property>
+      <Property name="creationType">com.jintaimei.support.bean.HomePage</Property>
       <PropertyDef name="id">
         <Property name="dataType">String</Property>
         <Property name="label">主键</Property>
@@ -31,7 +31,7 @@
     <DataSet id="dsHomePage">
       <Property name="dataType">[dtHomePage]</Property>
       <Property name="pageSize">20</Property>
-      <Property name="dataProvider">editHomePagePr#getHomePage</Property>
+      <Property name="dataProvider">homePagePr#getHomePage</Property>
     </DataSet>
     <ToolBar>
       <DataPilot/>
@@ -166,11 +166,11 @@ var path = &quot;${request.getContextPath()}&quot;;
 htmlContainer.set(&quot;content&quot;,&quot;&lt;div style='text-align:center;'>&lt;img id='preShowImg' src='&quot;+path+currentData.get(&quot;imgFile&quot;)+&quot;' style='width: 450px; height: 330px;margin: 2px' />&lt;div/>&quot;);
 
 </ClientEvent>
-      <Property name="fileResolver">editHomePagePr#uploadImg</Property>
+      <Property name="fileResolver">homePagePr#uploadImg</Property>
       <Filters/>
     </UploadAction>
     <AjaxAction id="updateAction">
-      <Property name="service">editHomePagePr#updateHomePage</Property>
+      <Property name="service">homePagePr#updateHomePage</Property>
     </AjaxAction>
   </View>
 </ViewConfig>

@@ -1,6 +1,6 @@
 <%@page import="com.jintaimei.common.util.SpringContextsUtil"%>
-<%@page import="com.jintaimei.editview.view.EditHomePagePr"%>
-<%@page import="com.jintaimei.editview.bean.*"%>
+<%@page import="com.jintaimei.support.view.HomePagePr"%>
+<%@page import="com.jintaimei.support.bean.*"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
@@ -58,10 +58,10 @@
 <body
 	class="page page-id-72 page-parent page-template page-template-page-portfolio-full-php">
 	<%
-	String path = request.getContextPath();
-	System.out.print(path);
-	EditHomePagePr homePagePr = (EditHomePagePr) SpringContextsUtil.getBean("editHomePagePr");
-	List<HomePage> list = homePagePr.getListHomePage();
+		String path = request.getContextPath();
+		System.out.print(path);
+		HomePagePr homePagePr = (HomePagePr) SpringContextsUtil.getBean("homePagePr");
+		List<HomePage> list = homePagePr.getListHomePage();
 	%>
 	<div id="main">
 		<header>
