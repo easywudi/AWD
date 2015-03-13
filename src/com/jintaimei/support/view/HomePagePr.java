@@ -23,7 +23,7 @@ import com.jintaimei.common.util.AwdUtils;
 import com.jintaimei.support.bean.HomePage;
 import com.jintaimei.support.bean.mapper.HomePageMapper;
 
-@Component("editHomePagePr")
+@Component("homePagePr")
 public class HomePagePr extends CoreJdbcDao {
 	
 	@DataProvider
