@@ -104,7 +104,7 @@ dsHomePage.flushAsync();</ClientEvent>
         </Button>
         <Button>
           <ClientEvent name="onClick">var updateAction = view.get(&quot;#updateAction&quot;);
-var currentData = view.get(&quot;#dsHomePage)&quot;).getData(&quot;#&quot;);
+var currentData = view.get(&quot;#dsHomePage&quot;).getData(&quot;#&quot;);
 var tip = new dorado.widget.NotifyTip();
 
 updateAction.set(&quot;parameter&quot;,currentData).execute(function(){

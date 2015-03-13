@@ -66,8 +66,12 @@ public class HomePagePr extends CoreJdbcDao {
     }
 	
 	@Expose
-	public void updateHomePage(Map<String,Object> param) {
-		
+	public void updateHomePage(HomePage hg) throws Exception {
+		String sql = "UPDATE HOME_PAGE SET IMG_FILE = '" + hg.getImgFile()
+				+ "',PROJECT_TITLE = '" + hg.getProjectTitle()
+				+ "' , PROJECT_DESC='" + hg.getProjectDesc() + "' WHERE ID = '"
+				+ hg.getId() + "' ";
+		this.getJdbcTemplate().update(sql);		
 	}
 	
 	
