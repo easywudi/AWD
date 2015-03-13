@@ -74,5 +74,17 @@ public class HomePagePr extends CoreJdbcDao {
 		this.getJdbcTemplate().update(sql);		
 	}
 	
+	@Expose
+	public void updateShowOrder(List<HomePage> list) throws Exception {
+		if(list != null && list.size() > 0){
+			for(HomePage hg : list){
+				String sql = "UPDATE HOME_PAGE SET SHOW_ORDER = '"
+						+ hg.getShowOrder() + "' WHERE ID = '" + hg.getId()
+						+ "'";
+				this.getJdbcTemplate().update(sql);
+			}
+		}
+	}
+	
 	
 }

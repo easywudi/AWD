@@ -25,6 +25,10 @@
         <Property name="dataType">String</Property>
         <Property name="label">链接页面</Property>
       </PropertyDef>
+      <PropertyDef name="showOrder">
+        <Property name="dataType">int</Property>
+        <Property name="label">排序</Property>
+      </PropertyDef>
     </DataType>
   </Model>
   <View>
@@ -39,8 +43,15 @@
         <ClientEvent name="onClick">var editDialog = view.get(&quot;#editDialog&quot;);
 editDialog.show();
 </ClientEvent>
-        <Property name="caption">编辑</Property>
+        <Property name="caption">编辑图文</Property>
         <Property name="icon">url(>skin>common/icons.gif) -60px -20px</Property>
+      </ToolBarButton>
+      <ToolBarButton>
+        <ClientEvent name="onClick">var orderDialog = view.get(&quot;#orderDialog&quot;);
+orderDialog.show();
+</ClientEvent>
+        <Property name="caption">编辑排序</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -280px -180px</Property>
       </ToolBarButton>
     </ToolBar>
     <DataGrid id="homeGrid">
@@ -157,6 +168,79 @@ dialog.hide();
       </Children>
       <Tools/>
     </Dialog>
+    <Dialog id="orderDialog">
+      <Property name="width">800</Property>
+      <Property name="height">500</Property>
+      <Buttons>
+        <Button>
+          <ClientEvent name="onClick">var action = view.get(&quot;#orderAction&quot;);
+var allData = view.get(&quot;#dsHomePage&quot;).getData();
+var dialog = view.get(&quot;#orderDialog&quot;);
+var tip = new dorado.widget.NotifyTip();
+action.set(&quot;parameter&quot;,allData).execute(function(){
+	tip.set('text','保存成功!');
+	tip.show();
+	dialog.hide();
+});
+</ClientEvent>
+          <Property name="caption">保存</Property>
+          <Property name="icon">url(>skin>common/icons.gif) -20px 0px</Property>
+        </Button>
+        <Button>
+          <ClientEvent name="onClick">var dialog = view.get(&quot;#orderDialog&quot;);
+dialog.hide();
+</ClientEvent>
+          <Property name="caption">取消</Property>
+          <Property name="icon">url(>skin>common/icons.gif) -40px 0px</Property>
+        </Button>
+      </Buttons>
+      <Children>
+        <DataGrid id="orderGrid">
+          <Property name="dataSet">dsHomePage</Property>
+          <Property name="readOnly">false</Property>
+          <Property name="rowHeight">50</Property>
+          <DataColumn name="id">
+            <ClientEvent name="onRenderCell">//var path = &quot;${request.getContextPath()}&quot;;
+$(arg.dom).empty().xCreate(
+		{
+			tagName : &quot;IMG&quot;,
+			src : $url(&quot;>&quot;
+					+ arg.data.get(&quot;imgFile&quot;) ),
+			style : &quot;width: 64px; height: 64px;margin: 2px&quot;
+		});
+
+dorado.TipManager.initTip(arg.dom.parentNode, {
+	content : {
+		tagName : &quot;IMG&quot;,
+		src : $url(&quot;>&quot;
+				+ arg.data.get(&quot;imgFile&quot;) ),
+		style : &quot;width: 128px; height: 128px; margin: 8px&quot;
+	},
+	arrowDirection : &quot;top&quot;,
+	arrowAlign : &quot;left&quot;
+});</ClientEvent>
+            <Property name="property">imgFile</Property>
+            <Property name="supportsOptionMenu">false</Property>
+            <Property name="caption">图片</Property>
+            <Property name="width">100</Property>
+            <Property name="readOnly">true</Property>
+          </DataColumn>
+          <DataColumn name="projectTitle">
+            <Property name="property">projectTitle</Property>
+            <Property name="readOnly">true</Property>
+          </DataColumn>
+          <DataColumn name="projectDesc">
+            <Property name="property">projectDesc</Property>
+            <Property name="readOnly">true</Property>
+          </DataColumn>
+          <DataColumn name="showOrder">
+            <Property name="property">showOrder</Property>
+            <Property name="width">100</Property>
+          </DataColumn>
+        </DataGrid>
+      </Children>
+      <Tools/>
+    </Dialog>
     <UploadAction id="imgUpload">
       <ClientEvent name="onFileUploaded">var file = arg.returnValue;
 var currentData = view.get(&quot;#dsHomePage&quot;).getData(&quot;#&quot;);
@@ -171,6 +255,9 @@ htmlContainer.set(&quot;content&quot;,&quot;&lt;div style='text-align:center;'>&
     </UploadAction>
     <AjaxAction id="updateAction">
       <Property name="service">homePagePr#updateHomePage</Property>
+    </AjaxAction>
+    <AjaxAction id="orderAction">
+      <Property name="service">homePagePr#updateShowOrder</Property>
     </AjaxAction>
   </View>
 </ViewConfig>

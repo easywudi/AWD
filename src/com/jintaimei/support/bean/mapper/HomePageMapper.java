@@ -17,6 +17,7 @@ public class HomePageMapper implements RowMapper<HomePage> {
 		hg.setImgFile(rs.getString("IMG_FILE"));
 		hg.setProjectDesc(rs.getString("PROJECT_DESC"));
 		hg.setProjectTitle(rs.getString("PROJECT_TITLE"));
+		hg.setShowOrder(rs.getInt("SHOW_ORDER"));
 		return hg;
 	}
 	

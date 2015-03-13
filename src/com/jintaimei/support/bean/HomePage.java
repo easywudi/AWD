@@ -14,6 +14,7 @@ public class HomePage implements Serializable {
 	private String projectDesc;
 	private String imgFile;
 	private String detailLink;
+	private int showOrder;
 	
 	
 	public String getId() {
@@ -45,6 +46,12 @@ public class HomePage implements Serializable {
 	}
 	public void setDetailLink(String detailLink) {
 		this.detailLink = detailLink;
+	}
+	public int getShowOrder() {
+		return showOrder;
+	}
+	public void setShowOrder(int showOrder) {
+		this.showOrder = showOrder;
 	}
 	
 	
