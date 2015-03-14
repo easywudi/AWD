@@ -59,7 +59,6 @@
 	class="page page-id-72 page-parent page-template page-template-page-portfolio-full-php">
 	<%
 		String path = request.getContextPath();
-		System.out.print(path);
 		HomePagePr homePagePr = (HomePagePr) SpringContextsUtil.getBean("homePagePr");
 		List<HomePage> list = homePagePr.getListHomePage();
 	%>
