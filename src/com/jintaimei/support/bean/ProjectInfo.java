@@ -11,7 +11,7 @@ public class ProjectInfo implements Serializable {
 	private static final long serialVersionUID = 3202160603571816199L;
 	
 	
-	private String porjectId;
+	private String projectId;
 	private String projectName;
 	private String projectType;
 	private String projectAbout;
@@ -23,10 +23,10 @@ public class ProjectInfo implements Serializable {
 	private String state;
 	
 	public String getPorjectId() {
-		return porjectId;
+		return projectId;
 	}
-	public void setPorjectId(String porjectId) {
-		this.porjectId = porjectId;
+	public void setPorjectId(String projectId) {
+		this.projectId = projectId;
 	}
 	public String getProjectName() {
 		return projectName;
