@@ -1,5 +1,9 @@
 package com.jintaimei.support.view;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.Date;
@@ -50,8 +54,14 @@ public class HomePagePr extends CoreJdbcDao {
     	String date = AwdUtils.getDateToString(new Date(), "yyyyMMddHHmmss");
     	String fileType = file.getFileName().substring(file.getFileName().indexOf("."));
     	String newFileName = date+fileType;
+    	String newFileSubfix = date+AwdConstants.ImgUrl.IMG_SUBFIX+fileType;
     	File targetFile = new File(path,newFileName);
     	File copyFile = new File(AwdConstants.ImgUrl.BACKUP_URL,newFileName);
+    	
+    	//主页展示图片侧栏
+    	File targetSubFixImg = new File(path,newFileSubfix);
+    	File copySubFixImg = new File(AwdConstants.ImgUrl.BACKUP_URL,newFileSubfix);
+    	
     	if(!targetFile.isDirectory()){
     		targetFile.mkdirs();
     	}
@@ -62,6 +72,17 @@ public class HomePagePr extends CoreJdbcDao {
     	//写入一个图片到指定的地址进行备份
     	BufferedImage image = ImageIO.read(targetFile);
     	ImageIO.write(image, fileType.substring(1,fileType.length()), copyFile);
+    	
+    	//110X104
+    	int width = 110;
+    	int height = 104;
+    	BufferedImage subfixImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_BGR); 
+    	
+    	Graphics graphics = subfixImg.createGraphics();
+    	graphics.drawImage(image, 0, 0, width, height, null);  
+    	ImageIO.write(subfixImg, fileType.substring(1,fileType.length()), targetSubFixImg);
+    	ImageIO.write(subfixImg, fileType.substring(1,fileType.length()), copySubFixImg);
+        
         return AwdConstants.ImgUrl.PROJECT_URL+"/"+newFileName;
     }
 	
