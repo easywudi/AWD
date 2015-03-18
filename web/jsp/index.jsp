@@ -23,7 +23,6 @@
 <script type="text/javascript" src="../js/comment-reply.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/social_widget.css">
 <script type="text/javascript">
-  	// initialise plugins
 		jQuery(function(){
 			// main navigation init
 			jQuery('ul.sf-menu').superfish({
@@ -36,7 +35,6 @@
   </script>
 <script type="text/javascript">
 		jQuery(window).load(function() {
-			// nivoslider init
 			$('#slider').nivoSlider({
 				effect: 'random',
 				animSpeed:500,
@@ -52,8 +50,6 @@
 			});
 		});
 	</script>
-
-
 </head>
 <body
 	class="page page-id-72 page-parent page-template page-template-page-portfolio-full-php">
@@ -86,23 +82,16 @@
 						<li id="menu-item-94"
 							class="menu-item menu-item-type-post_type menu-item-94"><a
 							href="#">铝合金配件</a></li>
-						<li id="menu-item-93"
-							class="menu-item menu-item-type-post_type menu-item-93"><a
-							href="#">Kitchens</a></li>
 					</ul></li>
 				<li id="menu-item-7"
 					class="menu-item menu-item-type-post_type menu-item-7"><a
 					href="aboutus.jsp">关于我们</a></li>
-				<li id="menu-item-179"
-					class="menu-item menu-item-type-post_type menu-item-179"><a
-					href="http://cms.template-help.com/wordpress_32824/?page_id=177">Our
-						blog</a></li>
-<!-- 				<li id="menu-item-32" -->
-<!-- 					class="menu-item menu-item-type-post_type menu-item-32"><a -->
-<!-- 					href="http://cms.template-help.com/wordpress_32824/?page_id=30">Services</a></li> -->
 				<li id="menu-item-59"
 					class="menu-item menu-item-type-post_type menu-item-59"><a
 					href="contactus.jsp">联系我们</a></li>
+<!-- 				<li id="menu-item-179" -->
+<!-- 					class="menu-item menu-item-type-post_type menu-item-179"><a -->
+<!-- 					href="#">会员登陆</a></li> -->
 			</ul>
 			</nav>
 		</div>
