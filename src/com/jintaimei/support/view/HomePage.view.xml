@@ -252,7 +252,12 @@ htmlContainer.set(&quot;content&quot;,&quot;&lt;div style='text-align:center;'>&
 
 </ClientEvent>
       <Property name="fileResolver">homePagePr#uploadImg</Property>
-      <Filters/>
+      <Filters>
+        <Filter>
+          <Property name="title">Image File</Property>
+          <Property name="extensions">jpg,jpeg</Property>
+        </Filter>
+      </Filters>
     </UploadAction>
     <AjaxAction id="updateAction">
       <Property name="service">homePagePr#updateHomePage</Property>

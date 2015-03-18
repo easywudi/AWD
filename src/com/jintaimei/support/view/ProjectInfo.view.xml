@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model>
+    <DataType name="dtProject">
+      <Property name="creationType">com.jintaimei.support.bean.ProjectInfo</Property>
+      <PropertyDef name="projectId">
+        <Property name="dataType">String</Property>
+        <Property name="label">产品ID</Property>
+      </PropertyDef>
+      <PropertyDef name="projectName">
+        <Property name="dataType">String</Property>
+        <Property name="label">产品名称</Property>
+      </PropertyDef>
+      <PropertyDef name="projectType">
+        <Property name="dataType">String</Property>
+        <Property name="label">产品类型</Property>
+      </PropertyDef>
+      <PropertyDef name="projectAbout">
+        <Property name="dataType">String</Property>
+        <Property name="label">产品简介</Property>
+      </PropertyDef>
+      <PropertyDef name="imgFile">
+        <Property name="dataType">String</Property>
+        <Property name="label">预览图标</Property>
+      </PropertyDef>
+      <PropertyDef name="projectDescId">
+        <Property name="dataType">String</Property>
+        <Property name="label">描述ID</Property>
+      </PropertyDef>
+      <PropertyDef name="projectImgId">
+        <Property name="dataType">String</Property>
+        <Property name="label">图片ID</Property>
+      </PropertyDef>
+      <PropertyDef name="creator">
+        <Property name="dataType">String</Property>
+        <Property name="label">创建人</Property>
+      </PropertyDef>
+      <PropertyDef name="createTime">
+        <Property name="dataType">Date</Property>
+        <Property name="label">创建时间</Property>
+      </PropertyDef>
+      <PropertyDef name="state">
+        <Property name="dataType">String</Property>
+        <Property name="label">删除标示</Property>
+      </PropertyDef>
+      <Reference name="rfDetail">
+        <Property name="dataType">[dtDetail]</Property>
+      </Reference>
+      <Reference name="rfImg">
+        <Property name="dataType">[dtImg]</Property>
+      </Reference>
+    </DataType>
+    <DataType name="dtDetail">
+      <Property name="creationType">com.jintaimei.support.bean.ProjectDesc</Property>
+      <PropertyDef name="projectDescId">
+        <Property name="dataType">String</Property>
+        <Property name="label">描述ID</Property>
+      </PropertyDef>
+      <PropertyDef name="title">
+        <Property name="dataType">String</Property>
+        <Property name="label">标题</Property>
+      </PropertyDef>
+      <PropertyDef name="content">
+        <Property name="dataType">String</Property>
+        <Property name="label">内容</Property>
+      </PropertyDef>
+      <PropertyDef name="creator">
+        <Property name="dataType">String</Property>
+        <Property name="label">创建人</Property>
+      </PropertyDef>
+      <PropertyDef name="createTime">
+        <Property name="dataType">Date</Property>
+        <Property name="label">创建时间</Property>
+      </PropertyDef>
+      <PropertyDef name="state">
+        <Property name="dataType">String</Property>
+        <Property name="label">删除标示</Property>
+      </PropertyDef>
+    </DataType>
+    <DataType name="dtImg">
+      <Property name="creationType">com.jintaimei.support.bean.ProjectImg</Property>
+      <PropertyDef name="imgId">
+        <Property name="dataType">String</Property>
+        <Property name="label">图片ID</Property>
+      </PropertyDef>
+      <PropertyDef name="imgFile">
+        <Property name="dataType">String</Property>
+        <Property name="label">图片地址</Property>
+      </PropertyDef>
+      <PropertyDef name="imgName">
+        <Property name="dataType">String</Property>
+        <Property name="label">图片名称</Property>
+      </PropertyDef>
+      <PropertyDef name="imgOrder">
+        <Property name="dataType">int</Property>
+        <Property name="label">图片排序</Property>
+      </PropertyDef>
+      <PropertyDef name="creator">
+        <Property name="dataType">String</Property>
+        <Property name="label">创建人</Property>
+      </PropertyDef>
+      <PropertyDef name="createTime">
+        <Property name="dataType">Date</Property>
+        <Property name="label">创建时间</Property>
+      </PropertyDef>
+      <PropertyDef name="state">
+        <Property name="dataType">String</Property>
+        <Property name="label">删除标示</Property>
+      </PropertyDef>
+    </DataType>
+  </Model>
+  <View>
+    <DataSet id="dsProject">
+      <Property name="dataType">[dtProject]</Property>
+      <Property name="pageSize">20</Property>
+    </DataSet>
+    <Panel>
+      <Property name="height">300</Property>
+      <Buttons/>
+      <Children>
+        <ToolBar>
+          <DataPilot/>
+          <ToolBarButton>
+            <Property name="caption">添加</Property>
+            <Property name="icon">url(>skin>common/icons.gif) -120px 0px</Property>
+          </ToolBarButton>
+          <ToolBarButton>
+            <Property name="caption">删除</Property>
+            <Property name="icon">url(>skin>common/icons.gif) -140px 0px</Property>
+          </ToolBarButton>
+          <ToolBarButton>
+            <Property name="caption">编辑图文</Property>
+            <Property name="icon">url(>skin>common/icons.gif) -200px 0px</Property>
+          </ToolBarButton>
+          <ToolBarButton>
+            <Property name="caption">编辑排序</Property>
+            <Property name="icon">url(>skin>common/icons.gif) -280px -180px</Property>
+          </ToolBarButton>
+        </ToolBar>
+        <DataGrid id="dgProject">
+          <Property name="dataSet">dsProject</Property>
+          <DataColumn name="projectName">
+            <Property name="property">projectName</Property>
+          </DataColumn>
+          <DataColumn name="projectType">
+            <Property name="property">projectType</Property>
+          </DataColumn>
+          <DataColumn name="projectAbout">
+            <Property name="property">projectAbout</Property>
+          </DataColumn>
+          <DataColumn name="imgFile">
+            <Property name="property">imgFile</Property>
+          </DataColumn>
+          <DataColumn name="projectDescId">
+            <Property name="property">projectDescId</Property>
+          </DataColumn>
+          <DataColumn name="projectImgId">
+            <Property name="property">projectImgId</Property>
+          </DataColumn>
+          <DataColumn name="creator">
+            <Property name="property">creator</Property>
+          </DataColumn>
+          <DataColumn name="createTime">
+            <Property name="property">createTime</Property>
+          </DataColumn>
+        </DataGrid>
+      </Children>
+      <Tools/>
+    </Panel>
+    <Panel layout="hbox">
+      <Buttons/>
+      <Children>
+        <Panel layout="vbox">
+          <Property name="width">47%</Property>
+          <Buttons/>
+          <Children>
+            <ToolBar>
+              <ToolBarButton>
+                <Property name="caption">添加</Property>
+                <Property name="icon">url(>skin>common/icons.gif) -120px 0px</Property>
+              </ToolBarButton>
+              <ToolBarButton>
+                <Property name="caption">删除</Property>
+                <Property name="icon">url(>skin>common/icons.gif) -140px 0px</Property>
+              </ToolBarButton>
+              <ToolBarButton>
+                <Property name="caption">编辑描述</Property>
+                <Property name="icon">url(>skin>common/icons.gif) -200px 0px</Property>
+              </ToolBarButton>
+              <ToolBarButton>
+                <Property name="caption">编辑排序</Property>
+                <Property name="icon">url(>skin>common/icons.gif) -280px -180px</Property>
+              </ToolBarButton>
+            </ToolBar>
+            <DataGrid id="dsDetail">
+              <Property name="dataSet">dsProject</Property>
+              <Property name="dataPath">#.rfDetail</Property>
+              <DataColumn name="projectDescId">
+                <Property name="property">projectDescId</Property>
+              </DataColumn>
+              <DataColumn name="title">
+                <Property name="property">title</Property>
+              </DataColumn>
+              <DataColumn name="content">
+                <Property name="property">content</Property>
+              </DataColumn>
+              <DataColumn name="creator">
+                <Property name="property">creator</Property>
+              </DataColumn>
+              <DataColumn name="createTime">
+                <Property name="property">createTime</Property>
+              </DataColumn>
+              <DataColumn name="state">
+                <Property name="property">state</Property>
+              </DataColumn>
+            </DataGrid>
+          </Children>
+          <Tools/>
+        </Panel>
+        <Panel layout="vbox">
+          <Property name="width">47%</Property>
+          <Buttons/>
+          <Children>
+            <ToolBar>
+              <ToolBarButton>
+                <Property name="caption">添加</Property>
+                <Property name="icon">url(>skin>common/icons.gif) -120px 0px</Property>
+              </ToolBarButton>
+              <ToolBarButton>
+                <Property name="caption">删除</Property>
+                <Property name="icon">url(>skin>common/icons.gif) -140px 0px</Property>
+              </ToolBarButton>
+              <ToolBarButton>
+                <Property name="caption">编辑图片</Property>
+                <Property name="icon">url(>skin>common/icons.gif) -200px 0px</Property>
+              </ToolBarButton>
+              <ToolBarButton>
+                <Property name="caption">编辑排序</Property>
+                <Property name="icon">url(>skin>common/icons.gif) -280px -180px</Property>
+              </ToolBarButton>
+            </ToolBar>
+            <DataGrid id="dsImg">
+              <Property name="dataSet">dsProject</Property>
+              <Property name="dataPath">#.rfImg</Property>
+              <DataColumn name="imgId">
+                <Property name="property">imgId</Property>
+              </DataColumn>
+              <DataColumn name="imgFile">
+                <Property name="property">imgFile</Property>
+              </DataColumn>
+              <DataColumn name="imgName">
+                <Property name="property">imgName</Property>
+              </DataColumn>
+              <DataColumn name="imgOrder">
+                <Property name="property">imgOrder</Property>
+              </DataColumn>
+              <DataColumn name="creator">
+                <Property name="property">creator</Property>
+              </DataColumn>
+              <DataColumn name="createTime">
+                <Property name="property">createTime</Property>
+              </DataColumn>
+              <DataColumn name="state">
+                <Property name="property">state</Property>
+              </DataColumn>
+            </DataGrid>
+          </Children>
+          <Tools/>
+        </Panel>
+      </Children>
+      <Tools/>
+    </Panel>
+  </View>
+</ViewConfig>
