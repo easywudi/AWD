@@ -60,7 +60,7 @@ public class HomePagePr extends CoreJdbcDao {
     	
     	//主页展示图片侧栏
     	File targetSubFixImg = new File(path,newFileSubfix);
-    	File copySubFixImg = new File(AwdConstants.ImgUrl.BACKUP_URL,newFileSubfix);
+//    	File copySubFixImg = new File(AwdConstants.ImgUrl.BACKUP_URL,newFileSubfix);
     	
     	if(!targetFile.isDirectory()){
     		targetFile.mkdirs();
@@ -71,7 +71,7 @@ public class HomePagePr extends CoreJdbcDao {
     	file.transferTo(targetFile);
     	//写入一个图片到指定的地址进行备份
     	BufferedImage image = ImageIO.read(targetFile);
-    	ImageIO.write(image, fileType.substring(1,fileType.length()), copyFile);
+//    	ImageIO.write(image, fileType.substring(1,fileType.length()), copyFile);
     	
     	//110X104
     	int width = 110;
@@ -81,7 +81,7 @@ public class HomePagePr extends CoreJdbcDao {
     	Graphics graphics = subfixImg.createGraphics();
     	graphics.drawImage(image, 0, 0, width, height, null);  
     	ImageIO.write(subfixImg, fileType.substring(1,fileType.length()), targetSubFixImg);
-    	ImageIO.write(subfixImg, fileType.substring(1,fileType.length()), copySubFixImg);
+//    	ImageIO.write(subfixImg, fileType.substring(1,fileType.length()), copySubFixImg);
         
         return AwdConstants.ImgUrl.PROJECT_URL+"/"+newFileName;
     }
