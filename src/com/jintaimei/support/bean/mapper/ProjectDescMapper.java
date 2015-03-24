@@ -18,6 +18,8 @@ public class ProjectDescMapper implements RowMapper<ProjectDesc> {
 		pd.setProjectDescId(rs.getString("PROJECT_DESC_ID"));
 		pd.setState(rs.getString("STATE"));
 		pd.setTitle(rs.getString("TITLE"));
+		pd.setProjectId(rs.getString("PROJECT_ID"));
+		pd.setProjectDescOrder("PROJECT_DESC_ORDER");
 		return pd;
 	}
 

@@ -22,10 +22,10 @@ public class ProjectInfo implements Serializable {
 	private Date createTime;
 	private String state;
 	
-	public String getPorjectId() {
+	public String getProjectId() {
 		return projectId;
 	}
-	public void setPorjectId(String projectId) {
+	public void setProjectId(String projectId) {
 		this.projectId = projectId;
 	}
 	public String getProjectName() {

@@ -12,7 +12,7 @@ public class ProjectImg implements Serializable {
 	
 	private String imgId;
 	private String imgFile;
-	private String imgName;
+	private String projectId;
 	private int imgOrder;
 	private String creator;
 	private Date createTime;
@@ -30,11 +30,11 @@ public class ProjectImg implements Serializable {
 	public void setImgFile(String imgFile) {
 		this.imgFile = imgFile;
 	}
-	public String getImgName() {
-		return imgName;
+	public String getProjectId() {
+		return projectId;
 	}
-	public void setImgName(String imgName) {
-		this.imgName = imgName;
+	public void setProjectId(String projectId) {
+		this.projectId = projectId;
 	}
 	public int getImgOrder() {
 		return imgOrder;

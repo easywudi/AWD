@@ -2,8 +2,8 @@ package com.jintaimei.common.constant;
 
 public class AwdConstants {
 	
-	static final String YES = "1";
-	static final String NO = "0";
+	public static final String YES = "1";
+	public static final String NO = "0";
 	
 	public class ImgUrl {
 		

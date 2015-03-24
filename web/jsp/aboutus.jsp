@@ -55,17 +55,10 @@
 						<li id="menu-item-94"
 							class="menu-item menu-item-type-post_type menu-item-94"><a
 							href="#">铝合金配件</a></li>
-						<li id="menu-item-93"
-							class="menu-item menu-item-type-post_type menu-item-93"><a
-							href="#">Kitchens</a></li>
 					</ul></li>
 				<li id="menu-item-7"
 					class="menu-item menu-item-type-post_type menu-item-7"><a
 					href="aboutus.jsp">关于我们</a></li>
-				<li id="menu-item-179"
-					class="menu-item menu-item-type-post_type menu-item-179"><a
-					href="http://cms.template-help.com/wordpress_32824/?page_id=177">Our
-						blog</a></li>
 				<li id="menu-item-59"
 					class="menu-item menu-item-type-post_type menu-item-59"><a
 					href="contactus.jsp">联系我们</a></li>

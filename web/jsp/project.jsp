@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@page import="com.jintaimei.common.util.SpringContextsUtil"%>
+<%@page import="com.jintaimei.support.bean.*"%>
+<%@page import="java.util.List"%>    
+<%@page import="com.jintaimei.support.view.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -76,20 +80,10 @@
 						<li id="menu-item-94"
 							class="menu-item menu-item-type-post_type menu-item-94"><a
 							href="#">铝合金配件</a></li>
-						<li id="menu-item-93"
-							class="menu-item menu-item-type-post_type menu-item-93"><a
-							href="#">Kitchens</a></li>
 					</ul></li>
 				<li id="menu-item-7"
 					class="menu-item menu-item-type-post_type menu-item-7"><a
 					href="aboutus.jsp">关于我们</a></li>
-				<li id="menu-item-179"
-					class="menu-item menu-item-type-post_type menu-item-179"><a
-					href="http://cms.template-help.com/wordpress_32824/?page_id=177">Our
-						blog</a></li>
-<!-- 				<li id="menu-item-32" -->
-<!-- 					class="menu-item menu-item-type-post_type menu-item-32"><a -->
-<!-- 					href="http://cms.template-help.com/wordpress_32824/?page_id=30">Services</a></li> -->
 				<li id="menu-item-59"
 					class="menu-item menu-item-type-post_type menu-item-59"><a
 					href="contactus.jsp">联系我们</a></li>
@@ -97,6 +91,11 @@
 			</nav>
 		</div>
 		</header>
+		<% 
+			String path = request.getContextPath();
+			ProjectInfoPr pr = (ProjectInfoPr) SpringContextsUtil.getBean("projectInfoPr"); 
+			List<ProjectInfo> list = pr.getProjectInfo();
+		%>
 		<div class="primary_content_wrap">
 			<div class="container_24 clearfix">
 				<div id="full-width">
@@ -106,192 +105,39 @@
 						</div>
 						<div id="gallery">
 							<ul class="portfolio">
-								<li class=""><a class="image-wrap"
-									href=""
-									rel="prettyPhoto[gallery]" title="Kitchen item #5"><img
-										width="290" height="150"
-										src="../images/kitchen_1-290x150.jpg"
-										class="attachment-portfolio-post-thumbnail wp-post-image"
-										alt="kitchen_1" title="kitchen_1" style="display: block;"><span
-										class="zoom-icon"></span></a>
-									<div class="folio-desc">
-										<h4>
-											<a
-												href="http://cms.template-help.com/wordpress_32824/?portfolio=project-3_5">Kitchen
-												item #5</a>
-										</h4>
-										<p class="excerpt">Lorem ipsum dolor sit amet, consectetur
-											adipiscing elit. Aenean facilisis...</p>
-										<a
-											href="http://cms.template-help.com/wordpress_32824/?portfolio=project-3_5"
-											class="button">Read more</a>
-									</div></li>
-								<li class=""><a class="image-wrap"
-									href="detail.jsp"
-									rel="prettyPhoto[gallery]" title="Kitchen item #4"><img
-										width="290" height="150"
-										src="../images/kitchen_4-290x150.jpg"
-										class="attachment-portfolio-post-thumbnail wp-post-image"
-										alt="kitchen_4" title="kitchen_4" style="display: block;"><span
-										class="zoom-icon"></span></a>
-									<div class="folio-desc">
-										<h4>
-											<a href="detail.jsp">Kitchen item #4</a>
-										</h4>
-										<p class="excerpt">Lorem ipsum dolor sit amet, consectetur
-											adipiscing elit. Aenean facilisis...</p>
-										<a href="detail.jsp"
-											class="button">Read more</a>
-									</div></li>
-								<li class="nomargin"><a class="image-wrap"
-									href="http://cms.template-help.com/wordpress_32824/wp-content/uploads/2011/02/kitchen_3.jpg"
-									rel="prettyPhoto[gallery]" title="Kitchen item #3"><img
-										width="290" height="150"
-										src="../images/kitchen_3-290x150.jpg"
-										class="attachment-portfolio-post-thumbnail wp-post-image"
-										alt="kitchen_3" title="kitchen_3" style="display: block;"><span
-										class="zoom-icon"></span></a>
-									<div class="folio-desc">
-										<h4>
-											<a
-												href="http://cms.template-help.com/wordpress_32824/?portfolio=project-3_3">Kitchen
-												item #3</a>
-										</h4>
-										<p class="excerpt">Lorem ipsum dolor sit amet, consectetur
-											adipiscing elit. Aenean facilisis...</p>
-										<a
-											href="http://cms.template-help.com/wordpress_32824/?portfolio=project-3_3"
-											class="button">Read more</a>
-									</div></li>
-								<li class=""><a class="image-wrap"
-									href="http://cms.template-help.com/wordpress_32824/wp-content/uploads/2011/02/kitchen_2.jpg"
-									rel="prettyPhoto[gallery]" title="Kitchen item #2"><img
-										width="290" height="150"
-										src="../images/kitchen_2-290x150.jpg"
-										class="attachment-portfolio-post-thumbnail wp-post-image"
-										alt="kitchen_2" title="kitchen_2" style="display: block;"><span
-										class="zoom-icon"></span></a>
-									<div class="folio-desc">
-										<h4>
-											<a
-												href="http://cms.template-help.com/wordpress_32824/?portfolio=project-3_2">Kitchen
-												item #2</a>
-										</h4>
-										<p class="excerpt">Lorem ipsum dolor sit amet, consectetur
-											adipiscing elit. Aenean facilisis...</p>
-										<a
-											href="http://cms.template-help.com/wordpress_32824/?portfolio=project-3_2"
-											class="button">Read more</a>
-									</div></li>
-								<li class=""><a class="image-wrap"
-									href="http://cms.template-help.com/wordpress_32824/wp-content/uploads/2011/02/kitchen_5.jpg"
-									rel="prettyPhoto[gallery]" title="Kitchen item #1"><img
-										width="290" height="150"
-										src="../images/kitchen_5-290x150.jpg"
-										class="attachment-portfolio-post-thumbnail wp-post-image"
-										alt="kitchen_5" title="kitchen_5" style="display: block;"><span
-										class="zoom-icon"></span></a>
-									<div class="folio-desc">
-										<h4>
-											<a
-												href="http://cms.template-help.com/wordpress_32824/?portfolio=project-3_1">Kitchen
-												item #1</a>
-										</h4>
-										<p class="excerpt">Lorem ipsum dolor sit amet, consectetur
-											adipiscing elit. Aenean facilisis...</p>
-										<a
-											href="http://cms.template-help.com/wordpress_32824/?portfolio=project-3_1"
-											class="button">Read more</a>
-									</div></li>
-								<li class="nomargin"><a class="image-wrap"
-									href="http://cms.template-help.com/wordpress_32824/wp-content/uploads/2011/02/bedroom_4.jpg"
-									rel="prettyPhoto[gallery]" title="Bedroom item #4"><img
-										width="290" height="150"
-										src="../images/bedroom_4-290x150.jpg"
-										class="attachment-portfolio-post-thumbnail wp-post-image"
-										alt="bedroom_4" title="bedroom_4" style="display: block;"><span
-										class="zoom-icon"></span></a>
-									<div class="folio-desc">
-										<h4>
-											<a
-												href="http://cms.template-help.com/wordpress_32824/?portfolio=project-2_4">Bedroom
-												item #4</a>
-										</h4>
-										<p class="excerpt">Lorem ipsum dolor sit amet, consectetur
-											adipiscing elit. Aenean facilisis...</p>
-										<a
-											href="http://cms.template-help.com/wordpress_32824/?portfolio=project-2_4"
-											class="button">Read more</a>
-									</div></li>
-								<li class=""><a class="image-wrap"
-									href="http://cms.template-help.com/wordpress_32824/wp-content/uploads/2011/02/bedroom_3.jpg"
-									rel="prettyPhoto[gallery]" title="Bedroom item #3"><img
-										width="290" height="150"
-										src="../images/bedroom_3-290x150.jpg"
-										class="attachment-portfolio-post-thumbnail wp-post-image"
-										alt="bedroom_3" title="bedroom_3" style="display: block;"><span
-										class="zoom-icon"></span></a>
-									<div class="folio-desc">
-										<h4>
-											<a
-												href="http://cms.template-help.com/wordpress_32824/?portfolio=project-2_3">Bedroom
-												item #3</a>
-										</h4>
-										<p class="excerpt">Lorem ipsum dolor sit amet, consectetur
-											adipiscing elit. Aenean facilisis...</p>
-										<a
-											href="http://cms.template-help.com/wordpress_32824/?portfolio=project-2_3"
-											class="button">Read more</a>
-									</div></li>
-								<li class=""><a class="image-wrap"
-									href="http://cms.template-help.com/wordpress_32824/wp-content/uploads/2011/02/bedroom_2.jpg"
-									rel="prettyPhoto[gallery]" title="Bedroom item #2"><img
-										width="290" height="150"
-										src="../images/bedroom_2-290x150.jpg"
-										class="attachment-portfolio-post-thumbnail wp-post-image"
-										alt="bedroom_2" title="bedroom_2" style="display: block;"><span
-										class="zoom-icon"></span></a>
-									<div class="folio-desc">
-										<h4>
-											<a
-												href="http://cms.template-help.com/wordpress_32824/?portfolio=project-2_2">Bedroom
-												item #2</a>
-										</h4>
-										<p class="excerpt">Lorem ipsum dolor sit amet, consectetur
-											adipiscing elit. Aenean facilisis...</p>
-										<a
-											href="http://cms.template-help.com/wordpress_32824/?portfolio=project-2_2"
-											class="button">Read more</a>
-									</div></li>
-								<li class="nomargin"><a class="image-wrap"
-									href="http://cms.template-help.com/wordpress_32824/wp-content/uploads/2011/02/bedroom_1.jpg"
-									rel="prettyPhoto[gallery]" title="Bedroom item #1"><img
-										width="290" height="150"
-										src="../images/bedroom_1-290x150.jpg"
-										class="attachment-portfolio-post-thumbnail wp-post-image"
-										alt="bedroom_1" title="bedroom_1" style="display: block;"><span
-										class="zoom-icon"></span></a>
-									<div class="folio-desc">
-										<h4>
-											<a
-												href="http://cms.template-help.com/wordpress_32824/?portfolio=project-2_1">Bedroom
-												item #1</a>
-										</h4>
-										<p class="excerpt">Lorem ipsum dolor sit amet, consectetur
-											adipiscing elit. Aenean facilisis...</p>
-										<a
-											href="http://cms.template-help.com/wordpress_32824/?portfolio=project-2_1"
-											class="button">Read more</a>
-									</div></li>
+								
+								<%
+									int i = 1;
+									for (ProjectInfo pi : list) {  %>
+										<li class="<%= i%3==0?"nomargin":"" %>"><a class="image-wrap"
+											href="<%=path+"/jsp/detail.jsp?pid="+pi.getProjectId()%>"
+											rel="" title="<%=pi.getProjectName() %>"><img
+												width="290" height="150"
+												src="<%=path+pi.getImgFile() %>"
+												class="attachment-portfolio-post-thumbnail wp-post-image"
+												alt="kitchen_1" title="kitchen_1" style="display: block;"><span
+												class="zoom-icon"></span></a>
+											<div class="folio-desc">
+												<h4>
+													<a href=""><%=pi.getProjectName()%></a>
+												</h4>
+												<p class="excerpt"><%= pi.getProjectAbout()%></p>
+												<a href="<%=path+"/jsp/detail.jsp?pid="+pi.getProjectId()%>"
+													class="button">Read more</a>
+											</div>
+										</li>
+								<%
+										i++;
+									}
+								%>
+								
 							</ul>
 							<div class="clear"></div>
 						</div>
 						<nav class="oldernewer">
 						<div class="older">
 							<p>
-								<a
-									href="http://cms.template-help.com/wordpress_32824/?page_id=72&paged=2">«
-									购买铝材</a>
+								<a href="">« 购买铝材</a>
 							</p>
 						</div>
 						<div class="newer">

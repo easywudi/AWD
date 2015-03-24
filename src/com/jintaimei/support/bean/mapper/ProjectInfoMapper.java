@@ -15,7 +15,7 @@ public class ProjectInfoMapper implements RowMapper<ProjectInfo> {
 		pi.setCreateTime(rs.getDate("CREATE_TIME"));
 		pi.setCreator(rs.getString("CREATOR"));
 		pi.setImgFile(rs.getString("IMG_FILE"));
-		pi.setPorjectId(rs.getString("PROJECT_ID"));
+		pi.setProjectId(rs.getString("PROJECT_ID"));
 		pi.setProjectAbout(rs.getString("PROJECT_ABOUT"));
 		pi.setProjectDescId(rs.getString("PROJECT_DESC_ID"));
 		pi.setProjectImgId(rs.getString("PROJECT_IMG_ID"));

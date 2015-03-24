@@ -14,7 +14,7 @@ public class ProjectImgMapper implements RowMapper<ProjectImg> {
 		ProjectImg pi = new ProjectImg();
 		pi.setCreateTime(rs.getDate("CREATE_TIME"));
 		pi.setCreator(rs.getString("CREATOR"));
-		pi.setImgFile(rs.getString("IMG_NAME"));
+		pi.setProjectId(rs.getString("PROJECT_ID"));
 		pi.setImgFile(rs.getString("IMG_FILE"));
 		pi.setImgId(rs.getString("IMG_ID"));
 		pi.setImgOrder(rs.getInt("IMG_ORDER"));

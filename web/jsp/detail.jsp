@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@page import="com.jintaimei.common.util.SpringContextsUtil"%>
+<%@page import="com.jintaimei.support.bean.*"%>
+<%@page import="java.util.List"%>    
+<%@page import="com.jintaimei.support.view.*"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -55,17 +60,10 @@
 						<li id="menu-item-94"
 							class="menu-item menu-item-type-post_type menu-item-94"><a
 							href="#">铝合金配件</a></li>
-						<li id="menu-item-93"
-							class="menu-item menu-item-type-post_type menu-item-93"><a
-							href="#">Kitchens</a></li>
 					</ul></li>
 				<li id="menu-item-7"
 					class="menu-item menu-item-type-post_type menu-item-7"><a
 					href="aboutus.jsp">关于我们</a></li>
-				<li id="menu-item-179"
-					class="menu-item menu-item-type-post_type menu-item-179"><a
-					href="http://cms.template-help.com/wordpress_32824/?page_id=177">Our
-						blog</a></li>
 				<li id="menu-item-59"
 					class="menu-item menu-item-type-post_type menu-item-59"><a
 					href="contactus.jsp">联系我们</a></li>
@@ -73,18 +71,28 @@
 			</nav>
 		</div>
 		</header>
-		
+		<%
+			String path = request.getContextPath();
+			String projectId = request.getParameter("pid");
+			ProjectInfoPr pr = (ProjectInfoPr) SpringContextsUtil.getBean("projectInfoPr"); 
+			List<ProjectImg> list = pr.getProImg(projectId);
+			List<ProjectDesc> descList = pr.getProDesc(projectId);
+		%>
 		<div class="primary_content_wrap">
 			<div class="container_24 clearfix">
 				<div id="content" class="grid_16 suffix_1">
 					<div class="indent">
 						<div id="post-136" class="post-136 portfolio type-portfolio hentry post">
 							<article class="single-post">
-								<h1>XX样式门窗</h1>
+								<h1>图片详情</h1>
 								<div class="">
-									<img  src="../images/theme1215-1.jpg" class="attachment-post-thumbnail wp-post-image" alt="kitchen_4" title="kitchen_4" style="margin-bottom: 20px">
-									<img  src="../images/theme1215-1.jpg" class="attachment-post-thumbnail wp-post-image" alt="kitchen_4" title="kitchen_4" style="margin-bottom: 20px">
-									<img  src="../images/theme1215-1.jpg" class="attachment-post-thumbnail wp-post-image" alt="kitchen_4" title="kitchen_4" style="margin-bottom: 20px">
+									
+									<%
+										for(ProjectImg pi : list){ %>
+											<img  src="<%=path+pi.getImgFile() %>" class="attachment-post-thumbnail wp-post-image" style="margin-bottom: 20px">
+									<%
+										}	
+									%>
 								</div> 
 							</article>
 						</div> 
@@ -93,26 +101,31 @@
 				<aside id="sidebar" class="grid_7">
 					<div id="my_cyclewidget-5" class="widget"> <h3>简介</h3>
 						<ul class="post_cycle">
-							<li class="cycle_item">
-								<h4><a href="#">价   格</a></h4>
-									<label>量身订做，标价为每平方的单价。（价格不含运费、税费），含锁具、合页、门框、门扇！买家不需要再另外购买其它配等！   无标准尺寸，按实际需求订做。根据客户提供规格订制。</label> 
-							</li>
-							<li class="cycle_item">
-								<h4><a href="#">保 质 期</a></h4>
-									<label>铝合金永不生锈，非自然灾害、非人为，主材保用20年（只要玻璃不破，都可以长期使用）！</label> 
-							</li>
-							<li class="cycle_item">
-								<h4><a href="#">适用场所</a></h4>
-									<label>广泛适合于厨房 书房，房间隔断等 </label>
-							</li>
-							<li class="cycle_item">
-								<h4><a href="#">铝 合 金</a></h4>
-									<label>铝合金门是将表面处理过的铝合金型材，经过开料、打孔、铣槽、攻丝、制作等加工流程制作成门框、门扇构件，再用连接件、密封材料和开闭五金配件一起组合拼装而成的整套门。</label> 
-							</li>
-							<li class="cycle_item">
-								<h4><a href="#">玻   璃</a></h4>
-									<label>普通玻璃4+4mm。有磨沙，蒙沙，格条，镜花，白玻等优美的工艺玻璃，让您的空间充满艺术感及幽雅的格调！玻璃款式可以随便搭配喜欢什么款式就订做什么款式。     钢化玻璃每平方成本高30元。 钢化玻璃强度是普通玻璃的3~5倍，可承受一定能量的外来撞击或温差变化而不破碎，即使破碎，也是整块玻璃碎成类似蜂窝状钝角小颗粒，不易伤人 。</label>  
-							</li>
+							<% 
+								for(ProjectDesc pd : descList){ %>
+									<li class="cycle_item">
+										<h4><a href="#"><%=pd.getTitle() %></a></h4>
+											<label><%=pd.getContent() %></label> 
+									</li>
+							<%	
+								}
+							%>
+<!-- 							<li class="cycle_item"> -->
+<!-- 								<h4><a href="#">保 质 期</a></h4> -->
+<!-- 									<label>铝合金永不生锈，非自然灾害、非人为，主材保用20年（只要玻璃不破，都可以长期使用）！</label>  -->
+<!-- 							</li> -->
+<!-- 							<li class="cycle_item"> -->
+<!-- 								<h4><a href="#">适用场所</a></h4> -->
+<!-- 									<label>广泛适合于厨房 书房，房间隔断等 </label> -->
+<!-- 							</li> -->
+<!-- 							<li class="cycle_item"> -->
+<!-- 								<h4><a href="#">铝 合 金</a></h4> -->
+<!-- 									<label>铝合金门是将表面处理过的铝合金型材，经过开料、打孔、铣槽、攻丝、制作等加工流程制作成门框、门扇构件，再用连接件、密封材料和开闭五金配件一起组合拼装而成的整套门。</label>  -->
+<!-- 							</li> -->
+<!-- 							<li class="cycle_item"> -->
+<!-- 								<h4><a href="#">玻   璃</a></h4> -->
+<!-- 									<label>普通玻璃4+4mm。有磨沙，蒙沙，格条，镜花，白玻等优美的工艺玻璃，让您的空间充满艺术感及幽雅的格调！玻璃款式可以随便搭配喜欢什么款式就订做什么款式。     钢化玻璃每平方成本高30元。 钢化玻璃强度是普通玻璃的3~5倍，可承受一定能量的外来撞击或温差变化而不破碎，即使破碎，也是整块玻璃碎成类似蜂窝状钝角小颗粒，不易伤人 。</label>   -->
+<!-- 							</li> -->
 						</ul>
 					</div>   
 				</aside> 
@@ -127,9 +140,6 @@
 				<div id="categories-4" class="grid_5 suffix_2">
 					<h3>联系方式</h3>
 					<ul>
-<!-- 						<li class="cat-item cat-item-15"><a -->
-<!-- 							href="#" -->
-<!-- 							title="View all posts filed under Who We Are"></a></li> -->
 						<li class="cat-item cat-item-6"><a
 							href="#"
 							title="电话:0311-86335588">电话:&nbsp;&nbsp;&nbsp;0311-86335588</a></li>
