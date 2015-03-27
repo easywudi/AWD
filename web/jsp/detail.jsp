@@ -218,9 +218,10 @@
 	
 	<script type="text/javascript">
 		function submit_form(){
-			var phone = $("#phone_m").val();
-			var content = $("#content_m").val();
-			if(!phone && !content){
+			var phone = $("#phone_m").val().trim();
+			var content = $("#content_m").val().trim();
+			alert(phone + ":" + content.length);
+			if(phone == "您的联系方式:" || content == "您的留言:" || !phone || !content || content.length==0 || phone.length==0){
 				alert("留言信息请填写完整!");
 			} else {
 				$("#guestbook_f").attr("action", "<%=path%>/MessageServlet");

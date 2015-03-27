@@ -24,9 +24,6 @@
 		<property name="username" value="root" />
 		<property name="password" value="crazy81" />
 		
-<!-- 		<property name="url" value="jdbc:mysql://118.193.154.45:3306/sq_ws150015?useUnicode=true&amp;characterEncoding=UTF-8" /> -->
-<!-- 		<property name="username" value="sq_ws150015" /> -->
-<!-- 		<property name="password" value="iso025" /> -->
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="minIdle" value="10" />
 		<property name="maxActive" value="20" />

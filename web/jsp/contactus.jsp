@@ -82,16 +82,16 @@
 							<div id="text-5"><h2 style="font-size: 2.7em;line-height: 1.2em;font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;color: #72696b;font-weight: normal;text-transform: uppercase;margin: 0 0 0.75em;">客户留言</h2> 
 								<div class="textwidget">
 									<div class="wpcf7" id="wpcf7-f1-w1-o1">
-										<form action="/wordpress_32824/?page_id=57#wpcf7-f1-w1-o1" method="post" class="wpcf7-form">
+										<form action="" method="post" class="wpcf7-form" id="guestbook_xf">
 											<p class="field">姓名 <small style="color: red;">*</small><br>
-											<span class="wpcf7-form-control-wrap your-name"><input type="text" name="your-name" value="" class="wpcf7-text wpcf7-validates-as-required" size="40"></span> </p>
+											<span class="wpcf7-form-control-wrap your-name"><input type="text" name="name_m" id="name_xm" class="wpcf7-text wpcf7-validates-as-required" size="40"></span> </p>
 											<p class="field">邮箱 <small style="color: red;">*</small><br>
-											<span class="wpcf7-form-control-wrap your-email"><input type="text" name="your-email" value="" class="wpcf7-text wpcf7-validates-as-email wpcf7-validates-as-required" size="40"></span> </p>
-											<p class="field">联系方式<br>
-											<span class="wpcf7-form-control-wrap your-subject"><input type="text" name="your-subject" value="" class="wpcf7-text" size="40"></span> </p>
-											<p class="field">您的留言<br>
-											<span class="wpcf7-form-control-wrap your-message"><textarea name="your-message" cols="40" rows="10"></textarea></span> </p>
-											<p class="submit-wrap"><input type="submit" value="留言" class="wpcf7-submit"><img class="ajax-loader" style="visibility: hidden;" alt="Sending ..." src="http://cms.template-help.com/wordpress_32824/wp-content/plugins/contact-form-7/images/ajax-loader.gif"></p>
+											<span class="wpcf7-form-control-wrap your-email"><input type="text" name="email_m" id="email_xm"  class="wpcf7-text wpcf7-validates-as-email wpcf7-validates-as-required" size="40"></span> </p>
+											<p class="field">联系方式 <small style="color: red;">*</small> <br>
+											<span class="wpcf7-form-control-wrap your-subject"><input type="text" id="phone_xm" name="phone_m"  class="wpcf7-text" size="40"></span> </p>
+											<p class="field">您的留言<small style="color: red;">*</small> <br>
+											<span class="wpcf7-form-control-wrap your-message"><textarea name="content_m" id="content_xm" cols="40" rows="10"></textarea></span> </p>
+											<p class="submit-wrap"><input type="button" onclick="submit_x_form()" value="留言" class="wpcf7-submit"><img class="ajax-loader" style="visibility: hidden;" alt="Sending ..." src="http://cms.template-help.com/wordpress_32824/wp-content/plugins/contact-form-7/images/ajax-loader.gif"></p>
 											<div class="wpcf7-response-output wpcf7-display-none"></div>
 										</form>
 									</div>
@@ -231,13 +231,27 @@
 
 	<script type="text/javascript">
 		function submit_form(){
-			var phone = $("#phone_m").val();
-			var content = $("#content_m").val();
-			if(!phone && !content){
+			var phone = $("#phone_m").val().trim();
+			var content = $("#content_m").val().trim();
+			alert(phone + ":" + content.length);
+			if(phone == "您的联系方式:" || content == "您的留言:" || !phone || !content || content.length==0 || phone.length==0){
 				alert("留言信息请填写完整!");
 			} else {
 				$("#guestbook_f").attr("action", "<%=path%>/MessageServlet");
 		        document.getElementById("guestbook_f").submit(); 
+			}
+		}
+		
+		function submit_x_form(){
+			var phone = $("#phone_xm").val().trim();
+			var content = $("#content_xm").val().trim();
+			var name = $("#name_xm").val().trim();
+			var email = $("#email_xm").val().trim();
+			if( !phone || !content || !name || !email){
+				alert("留言信息请填写完整!");
+			} else {
+				$("#guestbook_xf").attr("action", "<%=path%>/MessageServlet");
+		        document.getElementById("guestbook_xf").submit(); 
 			}
 		}
 	</script>

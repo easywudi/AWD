@@ -179,7 +179,7 @@
 								</div>
 								<p class="field">
 									<span class="wpcf7-form-control-wrap email-807"><input id="phone_m"
-										type="text" name="phone_m" value=""
+										type="text" name="phone_m" 
 										class="wpcf7-text wpcf7-validates-as-email wpcf7-validates-as-required wpcf7-use-title-as-watermark watermark"
 										size="40" title="您的联系方式:"></span>
 								</p>
@@ -216,9 +216,10 @@
 	<script type="text/javascript" src="../js/scripts.js"></script>
 	<script type="text/javascript">
 		function submit_form(){
-			var phone = $("#phone_m").val();
-			var content = $("#content_m").val();
-			if(!phone && !content){
+			var phone = $("#phone_m").val().trim();
+			var content = $("#content_m").val().trim();
+			alert(phone + ":" + content.length);
+			if(phone == "您的联系方式:" || content == "您的留言:" || !phone || !content || content.length==0 || phone.length==0){
 				alert("留言信息请填写完整!");
 			} else {
 				$("#guestbook_f").attr("action", "<%=path%>/MessageServlet");

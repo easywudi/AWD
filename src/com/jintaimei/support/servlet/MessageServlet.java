@@ -30,10 +30,10 @@ public class MessageServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		resp.setCharacterEncoding("UTF-8");
 		//联系人
-		String user = req.getParameter("username");
+		String user = req.getParameter("name_m");
 		String username = "";
 		//邮箱
-		String email = req.getParameter("email");
+		String email = req.getParameter("email_m");
 		//内容
 		String content = req.getParameter("content_m");
 //		String content = con!=null?new String(con.getBytes("ISO-8859-1"),"utf-8"):"" ;
