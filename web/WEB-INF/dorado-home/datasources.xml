@@ -10,17 +10,24 @@
 	<bdf:anonymous-url urlPattern="/images/*.*"/>
 	<bdf:anonymous-url urlPattern="/css/*.*"/>
 	<bdf:anonymous-url urlPattern="/js/*.*"/>
+	<bdf:anonymous-url urlPattern="/MessageServlet*"/>
 
 	<bean id="bdf2.jdbcTransactionManager" class="com.bstek.bdf2.core.orm.transaction.JdbcTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	<tx:annotation-driven proxy-target-class="true" transaction-manager="bdf2.jdbcTransactionManager" />
-	<!-- 修改数据源的时候,一定不要忘记修改sessionFactory中hibernate.dialect -->
+	<!-- jdbc:mysql://localhost:3306/awd?useUnicode=true&amp;characterEncoding=UTF-8  -->
+	<!-- 		<property name="username" value="root" /> -->
+	<!-- 		<property name="password" value="crazy81" /> -->	
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-				<property name="url" value="jdbc:mysql://localhost:3306/awd?useUnicode=true&amp;characterEncoding=UTF-8" />
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/awd?useUnicode=true&amp;characterEncoding=UTF-8" />
 		<property name="username" value="root" />
 		<property name="password" value="crazy81" />
+		
+<!-- 		<property name="url" value="jdbc:mysql://118.193.154.45:3306/sq_ws150015?useUnicode=true&amp;characterEncoding=UTF-8" /> -->
+<!-- 		<property name="username" value="sq_ws150015" /> -->
+<!-- 		<property name="password" value="iso025" /> -->
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="minIdle" value="10" />
 		<property name="maxActive" value="20" />
 		<property name="maxWait" value="1000" />
@@ -28,6 +35,7 @@
 		<property name="removeAbandoned" value="true" />
 		<property name="logAbandoned" value="true" />
 	</bean>
+	
 	<bean parent="bdf2.dataSourceRegister">
 		<property name="dataSource" ref="dataSource" />
 		<property name="name" value="mysql" />

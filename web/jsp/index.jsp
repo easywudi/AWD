@@ -9,6 +9,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>广东金钛镁铝业</title>
+<meta name="keywords" content="广东金钛镁铝业,推拉门铝材 平开门铝材" /> 
+<meta name="description" content="广东金钛镁铝业专业经营拼格门铝材，中空推拉门铝材，平开门铝材。总部位于广东佛山大沥兴贤第二工业园，是铝门行业不可或缺的中坚力量。公司为开拓北方市场，在石家庄正定设立分部，以超实惠的价格，广东一流的产品质量为广大北方客户服务。公司全体员工竭诚欢迎您咨询及洽谈合作。" />
 
 <link rel="stylesheet" type="text/css" media="all" href="../css/themeMain.css">
 <link rel="stylesheet" type="text/css" media="all" href="../css/style.css">
@@ -89,9 +91,6 @@
 				<li id="menu-item-59"
 					class="menu-item menu-item-type-post_type menu-item-59"><a
 					href="contactus.jsp">联系我们</a></li>
-<!-- 				<li id="menu-item-179" -->
-<!-- 					class="menu-item menu-item-type-post_type menu-item-179"><a -->
-<!-- 					href="#">会员登陆</a></li> -->
 			</ul>
 			</nav>
 		</div>
@@ -144,9 +143,6 @@
 				<div id="categories-4" class="grid_5 suffix_2">
 					<h3>联系方式</h3>
 					<ul>
-<!-- 						<li class="cat-item cat-item-15"><a -->
-<!-- 							href="#" -->
-<!-- 							title="View all posts filed under Who We Are"></a></li> -->
 						<li class="cat-item cat-item-6"><a
 							href="#"
 							title="电话:0311-86335588">电话:&nbsp;&nbsp;&nbsp;0311-86335588</a></li>
@@ -174,8 +170,7 @@
 					<h3>联系我们</h3>
 					<div class="textwidget">
 						<div class="wpcf7" id="wpcf7-f3-w1-o1">
-							<form
-								action=""
+							<form action="" id="guestbook_f"
 								method="post" class="wpcf7-form">
 								<div style="display: none;">
 									<input type="hidden" name="_wpcf7" value="3"> <input
@@ -183,19 +178,19 @@
 										type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f3-w1-o1">
 								</div>
 								<p class="field">
-									<span class="wpcf7-form-control-wrap email-807"><input
-										type="text" name="email-807" value=""
+									<span class="wpcf7-form-control-wrap email-807"><input id="phone_m"
+										type="text" name="phone_m" value=""
 										class="wpcf7-text wpcf7-validates-as-email wpcf7-validates-as-required wpcf7-use-title-as-watermark watermark"
 										size="40" title="您的联系方式:"></span>
 								</p>
 								<p class="field">
-									<span class="wpcf7-form-control-wrap textarea"><textarea
-											name="textarea"
+									<span class="wpcf7-form-control-wrap textarea"><textarea id="content_m"
+											name="content_m"
 											class="wpcf7-use-title-as-watermark watermark" cols="40"
 											rows="10" title="您的留言:"></textarea></span>
 								</p>
 								<p class="submit-wrap">
-									<input type="submit" value="提交" class="wpcf7-submit"><img
+									<input type="button" value="提交" class="wpcf7-submit" onclick="submit_form()" ><img
 										class="ajax-loader" style="visibility: hidden;"
 										alt="Sending ..." src="../images/ajax-loader.gif">
 								</p>
@@ -211,9 +206,7 @@
 						href="#">保留所有权利</a><br>
 				</div>
 				<div class="fright f_email">
-					E-mail: <a href="mailto:18832132988@qq.com">18832132988@qq.com<script
-							cf-hash="f9e31" type="text/javascript">
-/* <![CDATA[ */!function(){try{var t="currentScript"in document?document.currentScript:function(){for(var t=document.getElementsByTagName("script"),e=t.length;e--;)if(t[e].getAttribute("cf-hash"))return t[e]}();if(t&&t.previousSibling){var e,r,n,i,c=t.previousSibling,a=c.getAttribute("data-cfemail");if(a){for(e="",r=parseInt(a.substr(0,2),16),n=2;a.length-n;n+=2)i=parseInt(a.substr(n,2),16)^r,e+=String.fromCharCode(i);e=document.createTextNode(e),c.parentNode.replaceChild(e,c)}}}catch(u){}}();/* ]]> */</script></a>
+					E-mail: <a href="mailto:18832132988@qq.com">18832132988@qq.com</a>
 				</div>
 			</div>
 		</div>
@@ -221,12 +214,18 @@
 	</div>
 	<script type="text/javascript" src="../js/jquery.form.js"></script>
 	<script type="text/javascript" src="../js/scripts.js"></script>
-
 	<script type="text/javascript">
-/* <![CDATA[ */
-(function(){try{var s,a,i,j,r,c,l=document.getElementsByTagName("a"),t=document.createElement("textarea");for(i=0;l.length-i;i++){try{a=l[i].getAttribute("href");if(a&&a.indexOf("/cdn-cgi/l/email-protection") > -1  && (a.length > 28)){s='';j=27+ 1 + a.indexOf("/cdn-cgi/l/email-protection");if (a.length > j) {r=parseInt(a.substr(j,2),16);for(j+=2;a.length>j&&a.substr(j,1)!='X';j+=2){c=parseInt(a.substr(j,2),16)^r;s+=String.fromCharCode(c);}j+=1;s+=a.substr(j,a.length-j);}t.innerHTML=s.replace(/</g,"&lt;").replace(/>/g,"&gt;");l[i].setAttribute("href","mailto:"+t.value);}}catch(e){}}}catch(e){}})();
-/* ]]> */
-</script>
+		function submit_form(){
+			var phone = $("#phone_m").val();
+			var content = $("#content_m").val();
+			if(!phone && !content){
+				alert("留言信息请填写完整!");
+			} else {
+				$("#guestbook_f").attr("action", "<%=path%>/MessageServlet");
+		        document.getElementById("guestbook_f").submit(); 
+			}
+		}
+	</script>
 
 
 </body>

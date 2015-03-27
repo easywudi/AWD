@@ -33,4 +33,16 @@
     <servlet-name>doradoServlet</servlet-name>
     <url-pattern>/dorado/*</url-pattern>
   </servlet-mapping>
+  
+  <!-- MessageServlet -->
+  <servlet>
+	<servlet-name>MessageServlet</servlet-name>
+    <servlet-class>com.jintaimei.support.servlet.MessageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+ 	<servlet-name>MessageServlet</servlet-name>
+    <url-pattern>/MessageServlet</url-pattern>
+  </servlet-mapping>
+  
+  
 </web-app>

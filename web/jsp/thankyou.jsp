@@ -33,7 +33,6 @@
 
 </head>
 <body class="page page-id-2 page-template page-template-page-about-php">
-	<%String path = request.getContextPath(); %>
 	<div id="main">
 		<header>
 				<div class="container_24">
@@ -73,29 +72,16 @@
 			<div class="container_24 clearfix">
 				<div id="content" class="grid_24">
 					<article>
-					<h1>关于我们</h1>
-					<div class="featured-thumbnail"></div>
-					<div id="page-content">
-						<p>
-							<a href="#"><img
-								src="../images/kitchen_5-300x199.jpg" alt=""
-								title="kitchen_5" width="300" height="199"
-								class="alignleft size-medium wp-image-207"></a><strong></strong><br>
-								本公司拥有一批经验丰富、技术精良的设计管理人才。在生产上，我们严格以欧洲标准研发制作，
-								生产过程中更是讲究精益求精，质量检验由专家严格把关，各工序产品都经过严格检测、监控，做到不合格产品绝不流入下一道工序，
-								精工塑造。在经营上，我们坚持“顾客至上、质量至上，服务至上”的企业宗旨，追求卓越，引领时尚，为您营造高品位、高质量的人生境界和舒适的生活空间。
-						</p>
-						<p>我们的产品采用先进设备技术生产，具有环保、防火、防水性、耐腐蚀性、不变型、不易褪色、款式新颖等特点，是现代家居装饰的最佳选择。</p>
-						<p>
-							本公司秉承“锐意创新、追求卓越”的精神，以“人才和企业共成长、企业与客户共进步”的双赢理念，坚持“质量第一，用户至上”的服务宗旨，
-							以诚信赢得了广大消费者的青睐，畅销全省各地，更赢得了社会各界的良好口碑。愿我们的真诚、我们的努力得到广大顾客恒久不变的信赖和支持，为每一位顾客营造温馨之家，是我们永恒的追求。
-						</p>
-<!-- 						<p> -->
-<!-- 							<a -->
-<!-- 								href="http://cms.template-help.com/wordpress_32824/?page_id=2#" -->
-<!-- 								class="button">Learn More</a> -->
-<!-- 						</p> -->
-					</div>
+					<% 
+						String path = request.getContextPath();
+						boolean flag = (Boolean) session.getAttribute("flag"); 
+						if(flag){ %>
+							<h1>感谢您的留言,我们将尽快与您联系.</h1>
+					<%  } else { %>
+							<h1>对不起留言功能暂时无法使用,请用邮件联系,收到后我们将尽快与你联系.</h1>
+					<%
+						}
+					%>
 					</article>
 				</div>
 			</div>
@@ -182,7 +168,6 @@
 		src="../js/jquery.form.js"></script>
 	<script type="text/javascript"
 		src="../js/scripts.js"></script>
-
 	<script type="text/javascript">
 		function submit_form(){
 			var phone = $("#phone_m").val();
@@ -195,6 +180,7 @@
 			}
 		}
 	</script>
+
 
 </body>
 </html>
