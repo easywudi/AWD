@@ -30,7 +30,11 @@
 			
 		});
 </script>
-
+<style type="text/css">
+            #allmap {width: 100%;height: 100%;overflow: hidden;margin:0;}
+            #l-map{height:100%;width:78%;float:left;border-right:2px solid #bcbcbc;}
+            #r-result{height:100%;width:20%;float:left;}
+        </style>
 </head>
 <body class="page page-id-2 page-template page-template-page-about-php">
 	<% String path = request.getContextPath(); %>
@@ -96,7 +100,33 @@
 						</div>
 						<div class="grid_9">
 							<div id="text-4" class="widget"><h2 style="font-size: 2.7em;line-height: 1.2em;font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;color: #72696b;font-weight: normal;text-transform: uppercase;margin: 0 0 0.75em;">联系地址</h2> <div class="textwidget"></div>
-								</div><div id="text-6" class="widget"> 
+								</div>
+								<div id="text-6" class="widget">
+									<div class="textwidget">
+											<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=8E609cb2cf395e16696a11ccd88e1393"></script>
+    										<div id="allmap" style="width: 350px; height: 195px; margin-top: 30px;margin-right:30px; overflow: hidden;"></div>
+    										
+    										<script type="text/javascript">
+										        $(function (){
+										            var map = new BMap.Map("allmap");
+										            var point=new BMap.Pixel(12754035.21, 4584866.64)
+										            var projection = new BMap.MercatorProjection();
+										            var point = projection.pointToLngLat(point);
+										            map.centerAndZoom(point, 10);
+										            map.enableScrollWheelZoom();
+										            map.addControl(new BMap.NavigationControl({type: BMAP_NAVIGATION_CONTROL_SMALL  }));   
+										            var marker = new BMap.Marker(point);  // 创建标注
+										            var label=new BMap.Label('广东金钛镁铝业');
+										            label.setOffset(new BMap.Size(15, -20));
+										            label.setStyle({border:"#D2D2D2 solid 1px",padding:"4px 6px"});
+										            marker.setLabel(label);
+										            map.addOverlay(marker);
+										        })
+									        </script> 
+									</div>
+								</div> 
+								
+								<div id="text-6" class="widget"> 
 									<div class="textwidget">
 										<dl class="address">
 											<dt style="font-weight: 700;margin-bottom: 25px;margin-top: 35px">
@@ -125,9 +155,6 @@
 				<div id="categories-4" class="grid_5 suffix_2">
 					<h3>联系方式</h3>
 					<ul>
-<!-- 						<li class="cat-item cat-item-15"><a -->
-<!-- 							href="#" -->
-<!-- 							title="View all posts filed under Who We Are"></a></li> -->
 						<li class="cat-item cat-item-6"><a
 							href="#"
 							title="电话:0311-86335588">电话:&nbsp;&nbsp;&nbsp;0311-86335588</a></li>
