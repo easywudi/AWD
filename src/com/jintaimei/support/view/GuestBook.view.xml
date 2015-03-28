@@ -2,6 +2,102 @@
 <ViewConfig>
   <Arguments/>
   <Context/>
-  <Model/>
-  <View/>
+  <Model>
+    <DataType name="dtMessage">
+      <Property name="creationType">com.jintaimei.support.bean.GuestBook</Property>
+      <PropertyDef name="id">
+        <Property name="dataType">String</Property>
+      </PropertyDef>
+      <PropertyDef name="guestName">
+        <Property name="dataType">String</Property>
+        <Property name="label">客户名称</Property>
+      </PropertyDef>
+      <PropertyDef name="guestEmail">
+        <Property name="dataType">String</Property>
+        <Property name="label">邮箱</Property>
+      </PropertyDef>
+      <PropertyDef name="guestPhone">
+        <Property name="dataType">String</Property>
+        <Property name="label">联系方式</Property>
+      </PropertyDef>
+      <PropertyDef name="guestMessage">
+        <Property name="dataType">String</Property>
+        <Property name="label">留言内容</Property>
+      </PropertyDef>
+      <PropertyDef name="createTime">
+        <Property name="dataType">Date</Property>
+        <Property name="label">创建时间</Property>
+      </PropertyDef>
+      <PropertyDef name="state">
+        <Property name="dataType">String</Property>
+      </PropertyDef>
+    </DataType>
+    <DataType name="dtCondition">
+      <PropertyDef name="startDate">
+        <Property name="label">开始时间</Property>
+        <Property name="dataType">Date</Property>
+      </PropertyDef>
+      <PropertyDef name="endDate">
+        <Property name="label">结束时间</Property>
+        <Property name="dataType">Date</Property>
+      </PropertyDef>
+    </DataType>
+  </Model>
+  <View>
+    <DataSet id="dsMessage">
+      <Property name="dataType">[dtMessage]</Property>
+      <Property name="pageSize">30</Property>
+      <Property name="dataProvider">messagePr#pageMessage</Property>
+    </DataSet>
+    <DataSet id="dsCondition">
+      <ClientEvent name="onReady">self.insert({});
+</ClientEvent>
+      <Property name="dataType">dtCondition</Property>
+    </DataSet>
+    <AutoForm>
+      <Property name="dataSet">dsCondition</Property>
+      <AutoFormElement>
+        <Property name="name">startDate</Property>
+        <Property name="property">startDate</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="name">endDate</Property>
+        <Property name="property">endDate</Property>
+        <Editor/>
+      </AutoFormElement>
+    </AutoForm>
+    <ToolBar>
+      <DataPilot>
+        <Property name="dataSet">dsMessage</Property>
+      </DataPilot>
+      <ToolBarButton>
+        <ClientEvent name="onClick">var dsMessage = view.get(&quot;#dsMessage&quot;);
+var condition = view.get(&quot;#dsCondition&quot;).getData(&quot;#&quot;);
+dsMessage.set(&quot;parameter&quot;,condition).flushAsync();
+</ClientEvent>
+        <Property name="caption">查询</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -40px -100px</Property>
+      </ToolBarButton>
+    </ToolBar>
+    <DataGrid>
+      <Property name="dataSet">dsMessage</Property>
+      <Property name="readOnly">true</Property>
+      <DataColumn name="guestName">
+        <Property name="property">guestName</Property>
+      </DataColumn>
+      <DataColumn name="guestEmail">
+        <Property name="property">guestEmail</Property>
+      </DataColumn>
+      <DataColumn name="guestPhone">
+        <Property name="property">guestPhone</Property>
+      </DataColumn>
+      <DataColumn name="guestMessage">
+        <Property name="property">guestMessage</Property>
+      </DataColumn>
+      <DataColumn name="createTime">
+        <Property name="property">createTime</Property>
+      </DataColumn>
+    </DataGrid>
+  </View>
 </ViewConfig>

@@ -41,7 +41,7 @@ public class MessageServlet extends HttpServlet {
 		String phone = req.getParameter("phone_m");
 		if(!StringUtils.hasText(user)){
 			username = "未留姓名";
-			email = "";
+			email = "未留邮箱";
 		} else {
 			username = new String(user.getBytes("ISO-8859-1"),"utf-8") ;
 		}
