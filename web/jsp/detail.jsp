@@ -12,6 +12,7 @@
 <title>广东金钛镁铝业</title>
 <meta name="keywords" content="广东金钛镁铝业,推拉门铝材 平开门铝材" /> 
 <meta name="description" content="广东金钛镁铝业专业经营拼格门铝材，中空推拉门铝材，平开门铝材。总部位于广东佛山大沥兴贤第二工业园，是铝门行业不可或缺的中坚力量。公司为开拓北方市场，在石家庄正定设立分部，以超实惠的价格，广东一流的产品质量为广大北方客户服务。公司全体员工竭诚欢迎您咨询及洽谈合作。" />
+<link rel="shortcut icon" href="images/favicon.ico">
 <link rel="stylesheet" type="text/css" media="all" href="../css/style.css">
 <link rel="stylesheet" type="text/css" media="all" href="../css/grid.css">
 <link rel="stylesheet" type="text/css" media="all" href="../css/prettyPhoto.css">
