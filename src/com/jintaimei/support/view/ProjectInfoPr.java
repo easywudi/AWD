@@ -21,17 +21,29 @@ public class ProjectInfoPr extends CoreJdbcDao {
 
 	@DataProvider
 	public void pageProjectInfo (Page<ProjectInfo> page,Map<String,Object> param) throws Exception {
+		int pageNo = page.getPageNo();
+		int pageSize = page.getPageSize();
+		String sql = "SELECT * FROM PROJECT_INFO ORDER BY CREATE_TIME DESC LIMIT "+(pageNo-1)+","+pageSize;
+		String countSql = "SELECT COUNT(*) FROM PROJECT_INFO";
+		List<ProjectInfo> homePages = this.getJdbcTemplate().query(sql, new ProjectInfoMapper());
+		int total = this.getJdbcTemplate().queryForObject(countSql, Integer.class);
+		page.setEntities(homePages);
+		page.setEntityCount(total);
 		
 	}
 	
-	public List<ProjectDesc> getProjectDesc (String descId) throws Exception {
-		
-		return null;
+	@DataProvider
+	public List<ProjectDesc> getProjectDesc (String projectId) throws Exception {
+		String sql = "SELECT * FROM PROJECT_DESC WHERE 1=1 AND PROJECT_ID = '"+projectId+"'";
+		List<ProjectDesc> list = this.getJdbcTemplate().query(sql, new ProjectDescMapper());
+		return list;
 	}
 	
-	public List<ProjectImg> getProjectImg (String imgId) throws Exception {
-		
-		return null;
+	@DataProvider
+	public List<ProjectImg> getProjectImg (String projectId) throws Exception {
+		String sql = "SELECT * FROM PROJECT_IMG WHERE 1=1 AND PROJECT_ID = '"+projectId+"'";
+		List<ProjectImg> list = this.getJdbcTemplate().query(sql, new ProjectImgMapper());
+		return list;
 	}
 	
 	public List<ProjectInfo> getProjectInfo() {

@@ -47,9 +47,13 @@
       </PropertyDef>
       <Reference name="rfDetail">
         <Property name="dataType">[dtDetail]</Property>
+        <Property name="parameter">$${this.projectId}</Property>
+        <Property name="dataProvider">projectInfoPr#getProjectDesc</Property>
       </Reference>
       <Reference name="rfImg">
         <Property name="dataType">[dtImg]</Property>
+        <Property name="dataProvider">projectInfoPr#getProjectImg</Property>
+        <Property name="parameter">$${this.projectId}</Property>
       </Reference>
     </DataType>
     <DataType name="dtDetail">
@@ -115,13 +119,16 @@
     <DataSet id="dsProject">
       <Property name="dataType">[dtProject]</Property>
       <Property name="pageSize">20</Property>
+      <Property name="dataProvider">projectInfoPr#pageProjectInfo</Property>
     </DataSet>
     <Panel>
       <Property name="height">300</Property>
       <Buttons/>
       <Children>
         <ToolBar>
-          <DataPilot/>
+          <DataPilot>
+            <Property name="dataSet">dsProject</Property>
+          </DataPilot>
           <ToolBarButton>
             <Property name="caption">添加</Property>
             <Property name="icon">url(>skin>common/icons.gif) -120px 0px</Property>
@@ -141,29 +148,52 @@
         </ToolBar>
         <DataGrid id="dgProject">
           <Property name="dataSet">dsProject</Property>
+          <Property name="rowHeight">50</Property>
           <DataColumn name="projectName">
             <Property name="property">projectName</Property>
+            <Property name="readOnly">true</Property>
           </DataColumn>
           <DataColumn name="projectType">
             <Property name="property">projectType</Property>
+            <Property name="readOnly">true</Property>
           </DataColumn>
           <DataColumn name="projectAbout">
             <Property name="property">projectAbout</Property>
+            <Property name="readOnly">true</Property>
           </DataColumn>
           <DataColumn name="imgFile">
+            <ClientEvent name="onRenderCell">//var path = &quot;${request.getContextPath()}&quot;;
+$(arg.dom).empty().xCreate(
+		{
+			tagName : &quot;IMG&quot;,
+			src : $url(&quot;>&quot;
+					+ arg.data.get(&quot;imgFile&quot;) ),
+			style : &quot;width: 64px; height: 64px;margin: 2px&quot;
+		});
+
+dorado.TipManager.initTip(arg.dom.parentNode, {
+	content : {
+		tagName : &quot;IMG&quot;,
+		src : $url(&quot;>&quot;
+				+ arg.data.get(&quot;imgFile&quot;) ),
+		style : &quot;width: 128px; height: 128px; margin: 8px&quot;
+	},
+	arrowDirection : &quot;top&quot;,
+	arrowAlign : &quot;left&quot;
+});</ClientEvent>
             <Property name="property">imgFile</Property>
-          </DataColumn>
-          <DataColumn name="projectDescId">
-            <Property name="property">projectDescId</Property>
-          </DataColumn>
-          <DataColumn name="projectImgId">
-            <Property name="property">projectImgId</Property>
+            <Property name="caption">图片</Property>
+            <Property name="supportsOptionMenu">false</Property>
+            <Property name="width">100</Property>
+            <Property name="readOnly">true</Property>
           </DataColumn>
           <DataColumn name="creator">
             <Property name="property">creator</Property>
+            <Property name="readOnly">true</Property>
           </DataColumn>
           <DataColumn name="createTime">
             <Property name="property">createTime</Property>
+            <Property name="readOnly">true</Property>
           </DataColumn>
         </DataGrid>
       </Children>
@@ -174,6 +204,7 @@
       <Children>
         <Panel layout="vbox">
           <Property name="width">47%</Property>
+          <Property name="height">100%</Property>
           <Buttons/>
           <Children>
             <ToolBar>
@@ -197,23 +228,23 @@
             <DataGrid id="dsDetail">
               <Property name="dataSet">dsProject</Property>
               <Property name="dataPath">#.rfDetail</Property>
-              <DataColumn name="projectDescId">
-                <Property name="property">projectDescId</Property>
-              </DataColumn>
+              <Property name="rowHeight">35</Property>
+              <Property name="readOnly">false</Property>
               <DataColumn name="title">
                 <Property name="property">title</Property>
+                <Property name="readOnly">true</Property>
               </DataColumn>
               <DataColumn name="content">
                 <Property name="property">content</Property>
+                <Property name="readOnly">true</Property>
               </DataColumn>
               <DataColumn name="creator">
                 <Property name="property">creator</Property>
+                <Property name="readOnly">true</Property>
               </DataColumn>
               <DataColumn name="createTime">
                 <Property name="property">createTime</Property>
-              </DataColumn>
-              <DataColumn name="state">
-                <Property name="property">state</Property>
+                <Property name="readOnly">true</Property>
               </DataColumn>
             </DataGrid>
           </Children>
@@ -244,26 +275,39 @@
             <DataGrid id="dsImg">
               <Property name="dataSet">dsProject</Property>
               <Property name="dataPath">#.rfImg</Property>
-              <DataColumn name="imgId">
-                <Property name="property">imgId</Property>
-              </DataColumn>
+              <Property name="rowHeight">50</Property>
               <DataColumn name="imgFile">
+                <ClientEvent name="onRenderCell">//var path = &quot;${request.getContextPath()}&quot;;
+$(arg.dom).empty().xCreate(
+		{
+			tagName : &quot;IMG&quot;,
+			src : $url(&quot;>&quot;
+					+ arg.data.get(&quot;imgFile&quot;) ),
+			style : &quot;width: 64px; height: 64px;margin: 2px&quot;
+		});
+
+dorado.TipManager.initTip(arg.dom.parentNode, {
+	content : {
+		tagName : &quot;IMG&quot;,
+		src : $url(&quot;>&quot;
+				+ arg.data.get(&quot;imgFile&quot;) ),
+		style : &quot;width: 128px; height: 128px; margin: 8px&quot;
+	},
+	arrowDirection : &quot;top&quot;,
+	arrowAlign : &quot;left&quot;
+});</ClientEvent>
                 <Property name="property">imgFile</Property>
-              </DataColumn>
-              <DataColumn name="imgName">
-                <Property name="property">imgName</Property>
-              </DataColumn>
-              <DataColumn name="imgOrder">
-                <Property name="property">imgOrder</Property>
+                <Property name="readOnly">true</Property>
+                <Property name="caption">图片</Property>
+                <Property name="width">100</Property>
               </DataColumn>
               <DataColumn name="creator">
                 <Property name="property">creator</Property>
+                <Property name="readOnly">true</Property>
               </DataColumn>
               <DataColumn name="createTime">
                 <Property name="property">createTime</Property>
-              </DataColumn>
-              <DataColumn name="state">
-                <Property name="property">state</Property>
+                <Property name="readOnly">true</Property>
               </DataColumn>
             </DataGrid>
           </Children>
