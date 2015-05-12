@@ -118,7 +118,7 @@
   <View>
     <DataSet id="dsProject">
       <Property name="dataType">[dtProject]</Property>
-      <Property name="pageSize">20</Property>
+      <Property name="pageSize">5</Property>
       <Property name="dataProvider">projectInfoPr#pageProjectInfo</Property>
     </DataSet>
     <Panel>
@@ -316,5 +316,46 @@ dorado.TipManager.initTip(arg.dom.parentNode, {
       </Children>
       <Tools/>
     </Panel>
+    <Dialog id="descDialog">
+      <Property name="width">600</Property>
+      <Property name="height">400</Property>
+      <Buttons>
+        <Button>
+          <Property name="caption">保存</Property>
+          <Property name="icon">url(>skin>common/icons.gif) -20px 0px</Property>
+        </Button>
+        <Button>
+          <ClientEvent name="onClick">var dialog = view.get(&quot;#descDialog&quot;);
+dialog.hide();</ClientEvent>
+          <Property name="caption">取消</Property>
+          <Property name="icon">url(>skin>common/icons.gif) -40px 0px</Property>
+        </Button>
+      </Buttons>
+      <Children>
+        <AutoForm>
+          <Property name="dataSet">dsProject</Property>
+          <Property name="dataPath">#.#rfDetail</Property>
+          <Property name="cols">*</Property>
+          <AutoFormElement>
+            <Property name="name">title</Property>
+            <Property name="property">title</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">content</Property>
+            <Property name="property">content</Property>
+            <Editor>
+              <TextArea>
+                <Property name="height">200</Property>
+              </TextArea>
+            </Editor>
+          </AutoFormElement>
+        </AutoForm>
+      </Children>
+      <Tools/>
+    </Dialog>
+    <AjaxAction id="descAjax"/>
+    <AjaxAction id="infoAjax"/>
+    <AjaxAction id="imgAjax"/>
   </View>
 </ViewConfig>

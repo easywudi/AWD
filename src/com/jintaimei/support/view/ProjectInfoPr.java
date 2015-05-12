@@ -34,14 +34,14 @@ public class ProjectInfoPr extends CoreJdbcDao {
 	
 	@DataProvider
 	public List<ProjectDesc> getProjectDesc (String projectId) throws Exception {
-		String sql = "SELECT * FROM PROJECT_DESC WHERE 1=1 AND PROJECT_ID = '"+projectId+"'";
+		String sql = "SELECT * FROM PROJECT_DESC WHERE 1=1 AND PROJECT_ID = '"+projectId+"' ORDER BY PROJECT_DESC_ORDER ASC ";
 		List<ProjectDesc> list = this.getJdbcTemplate().query(sql, new ProjectDescMapper());
 		return list;
 	}
 	
 	@DataProvider
 	public List<ProjectImg> getProjectImg (String projectId) throws Exception {
-		String sql = "SELECT * FROM PROJECT_IMG WHERE 1=1 AND PROJECT_ID = '"+projectId+"'";
+		String sql = "SELECT * FROM PROJECT_IMG WHERE 1=1 AND PROJECT_ID = '"+projectId+"' ORDER BY IMG_ORDER ASC ";
 		List<ProjectImg> list = this.getJdbcTemplate().query(sql, new ProjectImgMapper());
 		return list;
 	}
