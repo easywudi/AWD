@@ -44,6 +44,22 @@
       <PropertyDef name="state">
         <Property name="dataType">String</Property>
         <Property name="label">删除标示</Property>
+        <Property name="mapping">
+          <Property name="mapValues">
+            <Collection>
+              <Entity>
+                <Property name="label">是</Property>
+                <Property name="value">1</Property>
+              </Entity>
+              <Entity>
+                <Property name="label">否</Property>
+                <Property name="value">0</Property>
+              </Entity>
+            </Collection>
+          </Property>
+          <Property name="valueProperty">label</Property>
+          <Property name="keyProperty">value</Property>
+        </Property>
       </PropertyDef>
       <Reference name="rfDetail">
         <Property name="dataType">[dtDetail]</Property>
@@ -65,10 +81,12 @@
       <PropertyDef name="title">
         <Property name="dataType">String</Property>
         <Property name="label">标题</Property>
+        <Property name="required">true</Property>
       </PropertyDef>
       <PropertyDef name="content">
         <Property name="dataType">String</Property>
         <Property name="label">内容</Property>
+        <Property name="required">true</Property>
       </PropertyDef>
       <PropertyDef name="creator">
         <Property name="dataType">String</Property>
@@ -78,9 +96,32 @@
         <Property name="dataType">Date</Property>
         <Property name="label">创建时间</Property>
       </PropertyDef>
+      <PropertyDef name="projectId">
+        <Property name="dataType">String</Property>
+      </PropertyDef>
+      <PropertyDef name="projectDescOrder">
+        <Property name="dataType">int</Property>
+        <Property name="label">排序</Property>
+      </PropertyDef>
       <PropertyDef name="state">
         <Property name="dataType">String</Property>
         <Property name="label">删除标示</Property>
+        <Property name="mapping">
+          <Property name="mapValues">
+            <Collection>
+              <Entity>
+                <Property name="label">是</Property>
+                <Property name="value">1</Property>
+              </Entity>
+              <Entity>
+                <Property name="label">否</Property>
+                <Property name="value">0</Property>
+              </Entity>
+            </Collection>
+          </Property>
+          <Property name="valueProperty">label</Property>
+          <Property name="keyProperty">value</Property>
+        </Property>
       </PropertyDef>
     </DataType>
     <DataType name="dtImg">
@@ -112,6 +153,9 @@
       <PropertyDef name="state">
         <Property name="dataType">String</Property>
         <Property name="label">删除标示</Property>
+      </PropertyDef>
+      <PropertyDef name="projectId">
+        <Property name="dataType">String</Property>
       </PropertyDef>
     </DataType>
   </Model>
@@ -182,7 +226,7 @@ dorado.TipManager.initTip(arg.dom.parentNode, {
 	arrowAlign : &quot;left&quot;
 });</ClientEvent>
             <Property name="property">imgFile</Property>
-            <Property name="caption">图片</Property>
+            <Property name="caption">预览图片</Property>
             <Property name="supportsOptionMenu">false</Property>
             <Property name="width">100</Property>
             <Property name="readOnly">true</Property>
@@ -209,18 +253,49 @@ dorado.TipManager.initTip(arg.dom.parentNode, {
           <Children>
             <ToolBar>
               <ToolBarButton>
+                <ClientEvent name="onClick">var dialog = view.get(&quot;#descDialog&quot;);
+var currentData = view.get(&quot;#dsProject&quot;).getData(&quot;#.rfDetail&quot;);
+var projectId = view.get(&quot;#dsProject&quot;).getData(&quot;#.#projectId&quot;);
+if(!projectId){
+	dorado.MessageBox.alert(&quot;请添加项目后,再进行添加描述!&quot;);
+} else {
+	currentData.insert({
+		&quot;projectId&quot;:projectId
+	});
+	dialog.set(&quot;caption&quot;,&quot;新增描述&quot;);
+	dialog.show();
+}
+</ClientEvent>
                 <Property name="caption">添加</Property>
                 <Property name="icon">url(>skin>common/icons.gif) -120px 0px</Property>
               </ToolBarButton>
               <ToolBarButton>
+                <ClientEvent name="onClick">var action = view.get(&quot;#delDescAjax&quot;);
+var projectDescId = view.get(&quot;#dsProject&quot;).getData(&quot;#.#rfDetail.projectDescId&quot;);
+if(!projectDescId){
+	dorado.MessageBox.alert(&quot;暂无描述删除!&quot;);
+} else {
+	dorado.MessageBox.confirm(&quot;确定删除该条描述?&quot;,function(){
+		action.set(&quot;parameter&quot;,projectDescId).execute(function(){
+			view.get(&quot;#dsProject&quot;).getData(&quot;#.rfDetail&quot;).flushAsync();
+		});
+	});
+}
+</ClientEvent>
                 <Property name="caption">删除</Property>
                 <Property name="icon">url(>skin>common/icons.gif) -140px 0px</Property>
               </ToolBarButton>
               <ToolBarButton>
+                <ClientEvent name="onClick">var dialog = view.get(&quot;#descDialog&quot;);
+dialog.set(&quot;caption&quot;,&quot;编辑描述&quot;);
+dialog.show();
+</ClientEvent>
                 <Property name="caption">编辑描述</Property>
                 <Property name="icon">url(>skin>common/icons.gif) -200px 0px</Property>
               </ToolBarButton>
               <ToolBarButton>
+                <ClientEvent name="onClick">view.get(&quot;#orderDescDialog&quot;).show();
+</ClientEvent>
                 <Property name="caption">编辑排序</Property>
                 <Property name="icon">url(>skin>common/icons.gif) -280px -180px</Property>
               </ToolBarButton>
@@ -230,6 +305,10 @@ dorado.TipManager.initTip(arg.dom.parentNode, {
               <Property name="dataPath">#.rfDetail</Property>
               <Property name="rowHeight">35</Property>
               <Property name="readOnly">false</Property>
+              <DataColumn name="state">
+                <Property name="property">state</Property>
+                <Property name="readOnly">true</Property>
+              </DataColumn>
               <DataColumn name="title">
                 <Property name="property">title</Property>
                 <Property name="readOnly">true</Property>
@@ -317,10 +396,36 @@ dorado.TipManager.initTip(arg.dom.parentNode, {
       <Tools/>
     </Panel>
     <Dialog id="descDialog">
+      <ClientEvent name="onHide">var currentData = view.get(&quot;#dsProject&quot;).getData(&quot;#.rfDetail&quot;);
+currentData.flushAsync();
+</ClientEvent>
       <Property name="width">600</Property>
       <Property name="height">400</Property>
       <Buttons>
         <Button>
+          <ClientEvent name="onClick">var dsRef = view.get(&quot;#dsProject&quot;).getData(&quot;#.#rfDetail&quot;);
+var projectDescId = view.get(&quot;#dsProject&quot;).getData(&quot;#.#rfDetail.projectDescId&quot;);
+var dialog = view.get(&quot;#descDialog&quot;);
+var projectId = view.get(&quot;#dsProject&quot;).getData(&quot;#.projectId&quot;);
+if(!projectDescId){
+	projectDescId = &quot;&quot;;
+}
+var title = dsRef.get(&quot;title&quot;);
+var content = dsRef.get(&quot;content&quot;);
+var action = view.get(&quot;#descAjax&quot;);
+if(dsRef.validate() == 'ok'){
+	action.set(&quot;parameter&quot;,{
+		&quot;title&quot;:title,
+		&quot;content&quot;:content,
+		&quot;projectDescId&quot;:projectDescId,
+		&quot;projectId&quot;:projectId
+	}).execute(function(){
+		dialog.hide();
+	});
+}
+
+
+</ClientEvent>
           <Property name="caption">保存</Property>
           <Property name="icon">url(>skin>common/icons.gif) -20px 0px</Property>
         </Button>
@@ -354,7 +459,71 @@ dialog.hide();</ClientEvent>
       </Children>
       <Tools/>
     </Dialog>
-    <AjaxAction id="descAjax"/>
+    <Dialog id="orderDescDialog">
+      <ClientEvent name="onHide">var currentData = view.get(&quot;#dsProject&quot;).getData(&quot;#.rfDetail&quot;);
+currentData.flushAsync();
+</ClientEvent>
+      <Property name="height">400</Property>
+      <Property name="width">600</Property>
+      <Property name="caption">编辑排序</Property>
+      <Buttons>
+        <Button>
+          <ClientEvent name="onClick">var action = view.get(&quot;#orderDescAjax&quot;);
+var allData = view.get(&quot;#dsProject&quot;).getData(&quot;#.rfDetail&quot;);
+var dialog = view.get(&quot;#orderDescDialog&quot;);
+action.set(&quot;parameter&quot;,allData).execute(function(){
+	dialog.hide();
+});
+</ClientEvent>
+          <Property name="caption">保存</Property>
+          <Property name="icon">url(>skin>common/icons.gif) -20px 0px</Property>
+        </Button>
+        <Button>
+          <ClientEvent name="onClick">var dialog = view.get(&quot;#orderDescDialog&quot;);
+dialog.hide();</ClientEvent>
+          <Property name="caption">取消</Property>
+          <Property name="icon">url(>skin>common/icons.gif) -40px 0px</Property>
+        </Button>
+      </Buttons>
+      <Children>
+        <DataGrid>
+          <Property name="dataSet">dsProject</Property>
+          <Property name="dataPath">#.rfDetail</Property>
+          <Property name="rowHeight">35</Property>
+          <Property name="readOnly">false</Property>
+          <DataColumn name="projectDescOrder">
+            <Property name="property">projectDescOrder</Property>
+            <Property name="align">left</Property>
+          </DataColumn>
+          <DataColumn name="title">
+            <Property name="property">title</Property>
+            <Property name="readOnly">true</Property>
+          </DataColumn>
+          <DataColumn name="content">
+            <Property name="property">content</Property>
+            <Property name="readOnly">true</Property>
+          </DataColumn>
+          <DataColumn name="creator">
+            <Property name="property">creator</Property>
+            <Property name="readOnly">true</Property>
+          </DataColumn>
+          <DataColumn name="createTime">
+            <Property name="property">createTime</Property>
+            <Property name="readOnly">true</Property>
+          </DataColumn>
+        </DataGrid>
+      </Children>
+      <Tools/>
+    </Dialog>
+    <AjaxAction id="descAjax">
+      <Property name="service">projectInfoPr#saveDetail</Property>
+    </AjaxAction>
+    <AjaxAction id="delDescAjax">
+      <Property name="service">projectInfoPr#deleteDetail</Property>
+    </AjaxAction>
+    <AjaxAction id="orderDescAjax">
+      <Property name="service">projectInfoPr#saveOrderDetail</Property>
+    </AjaxAction>
     <AjaxAction id="infoAjax"/>
     <AjaxAction id="imgAjax"/>
   </View>

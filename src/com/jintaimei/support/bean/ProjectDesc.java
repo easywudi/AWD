@@ -14,7 +14,7 @@ public class ProjectDesc implements Serializable {
 	private String title;
 	private String content;
 	private String projectId;
-	private String projectDescOrder;
+	private int projectDescOrder;
 	private String creator;
 	private Date createTime;
 	private String state;
@@ -25,10 +25,10 @@ public class ProjectDesc implements Serializable {
 	public void setProjectId(String projectId) {
 		this.projectId = projectId;
 	}
-	public String getProjectDescOrder() {
+	public int getProjectDescOrder() {
 		return projectDescOrder;
 	}
-	public void setProjectDescOrder(String projectDescOrder) {
+	public void setProjectDescOrder(int projectDescOrder) {
 		this.projectDescOrder = projectDescOrder;
 	}
 	public String getProjectDescId() {

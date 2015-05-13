@@ -4,11 +4,15 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import com.bstek.bdf2.core.CoreJdbcDao;
+import com.bstek.bdf2.core.context.ContextHolder;
 import com.bstek.dorado.annotation.DataProvider;
+import com.bstek.dorado.annotation.Expose;
 import com.bstek.dorado.data.provider.Page;
 import com.jintaimei.common.constant.AwdConstants;
+import com.jintaimei.common.util.AwdUtils;
 import com.jintaimei.support.bean.ProjectDesc;
 import com.jintaimei.support.bean.ProjectImg;
 import com.jintaimei.support.bean.ProjectInfo;
@@ -62,5 +66,41 @@ public class ProjectInfoPr extends CoreJdbcDao {
 	}
 	
 	
+	@Expose
+	public void saveDetail(Map<String,String> param ) throws Exception {
+		if(param!=null){
+			String projectDescId = param.get("projectDescId");
+			String title = param.get("title");
+			String content = param.get("content");
+			String projectId = param.get("projectId");
+			String create = ContextHolder.getLoginUserName();
+			String sql = "";
+			if(StringUtils.hasText(projectDescId)){
+				sql = "UPDATE PROJECT_DESC SET TITLE='"+title+"',CONTENT='"+content+"' WHERE PROJECT_DESC_ID = '"+projectDescId+"' ";
+			} else {
+				sql = "INSERT INTO PROJECT_DESC (PROJECT_DESC_ID,TITLE,CONTENT,CREATOR,CREATE_TIME,STATE,PROJECT_ID)"
+						+ " VALUES ('"+AwdUtils.getUUID()+"','"+title+"','"+content+"','"+create+"',NOW(),'"+AwdConstants.YES+"','"+projectId+"') ";
+			}
+			this.getJdbcTemplate().update(sql);
+		}
+	}
+	
+	@Expose
+	public void saveOrderDetail(List<ProjectDesc> list) throws Exception {
+		if(list!=null){
+			for(ProjectDesc pd : list){
+				String sql = "UPDATE PROJECT_DESC SET PROJECT_DESC_ORDER = '"+pd.getProjectDescOrder()+"' WHERE PROJECT_DESC_ID = '"+pd.getProjectDescId()+"'";
+				this.getJdbcTemplate().update(sql);
+			}
+		}
+	}
+	
+	@Expose
+	public void deleteDetail(String id) throws Exception {
+		if(StringUtils.hasText(id)){
+			String sql = "UPDATE PROJECT_DESC SET STATE = '"+AwdConstants.NO+"' WHERE PROJECT_DESC_ID = '"+id+"'";
+			this.getJdbcTemplate().update(sql);
+		}
+	}
 	
 }
