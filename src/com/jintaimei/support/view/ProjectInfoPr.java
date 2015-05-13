@@ -1,7 +1,11 @@
 package com.jintaimei.support.view;
 
+import java.io.File;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -11,6 +15,9 @@ import com.bstek.bdf2.core.context.ContextHolder;
 import com.bstek.dorado.annotation.DataProvider;
 import com.bstek.dorado.annotation.Expose;
 import com.bstek.dorado.data.provider.Page;
+import com.bstek.dorado.uploader.UploadFile;
+import com.bstek.dorado.uploader.annotation.FileResolver;
+import com.bstek.dorado.web.DoradoContext;
 import com.jintaimei.common.constant.AwdConstants;
 import com.jintaimei.common.util.AwdUtils;
 import com.jintaimei.support.bean.ProjectDesc;
@@ -101,6 +108,35 @@ public class ProjectInfoPr extends CoreJdbcDao {
 			String sql = "UPDATE PROJECT_DESC SET STATE = '"+AwdConstants.NO+"' WHERE PROJECT_DESC_ID = '"+id+"'";
 			this.getJdbcTemplate().update(sql);
 		}
+	}
+	
+	@FileResolver
+	public String uploadDetailImg(UploadFile file, Map<String, Object> parameter) throws Exception {
+    	HttpServletRequest request = DoradoContext.getCurrent().getRequest();
+    	String path = request.getSession().getServletContext().getRealPath(AwdConstants.ImgUrl.PROJECT_URL);
+    	String date = AwdUtils.getDateToString(new Date(), "yyyyMMddHHmmss");
+    	String fileType = file.getFileName().substring(file.getFileName().indexOf("."));
+    	String newFileName = date+fileType;
+    	File targetFile = new File(path,newFileName);
+    	if(!targetFile.isDirectory()){
+    		targetFile.mkdirs();
+    	}
+    	file.transferTo(targetFile);
+        return AwdConstants.ImgUrl.PROJECT_URL+"/"+newFileName;
+    }
+	
+	@Expose
+	public void saveImgDetail(ProjectImg pi) throws Exception {
+		String imgId = pi.getImgId();
+		String imgFile = pi.getImgFile();
+		String sql;
+		if(StringUtils.hasText(imgId)) {
+			sql = "UPDATE PROJECT_IMG SET IMG_FILE='"+imgFile+"' WHERE IMG_ID='"+imgId+"'";
+		} else {
+			sql = "INSERT INTO PROJECT_IMG (IMG_ID,IMG_FILE,PROJECT_ID,CREATOR,CREATE_TIME,STATE,IMG_ORDER)"
+					+ " VALUES ('"+AwdUtils.getUUID()+"','"+imgFile+"','"+pi.getProjectId()+"','"+ContextHolder.getLoginUserName()+"',NOW(),'"+AwdConstants.YES+"','"+0+"')";
+		}
+		this.getJdbcTemplate().update(sql);		
 	}
 	
 }

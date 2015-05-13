@@ -43,7 +43,7 @@
       </PropertyDef>
       <PropertyDef name="state">
         <Property name="dataType">String</Property>
-        <Property name="label">删除标示</Property>
+        <Property name="label">是否显示</Property>
         <Property name="mapping">
           <Property name="mapValues">
             <Collection>
@@ -105,7 +105,7 @@
       </PropertyDef>
       <PropertyDef name="state">
         <Property name="dataType">String</Property>
-        <Property name="label">删除标示</Property>
+        <Property name="label">是否显示</Property>
         <Property name="mapping">
           <Property name="mapValues">
             <Collection>
@@ -150,12 +150,28 @@
         <Property name="dataType">Date</Property>
         <Property name="label">创建时间</Property>
       </PropertyDef>
-      <PropertyDef name="state">
-        <Property name="dataType">String</Property>
-        <Property name="label">删除标示</Property>
-      </PropertyDef>
       <PropertyDef name="projectId">
         <Property name="dataType">String</Property>
+      </PropertyDef>
+      <PropertyDef name="state">
+        <Property name="dataType">String</Property>
+        <Property name="label">是否显示</Property>
+        <Property name="mapping">
+          <Property name="mapValues">
+            <Collection>
+              <Entity>
+                <Property name="label">是</Property>
+                <Property name="value">1</Property>
+              </Entity>
+              <Entity>
+                <Property name="label">否</Property>
+                <Property name="value">0</Property>
+              </Entity>
+            </Collection>
+          </Property>
+          <Property name="valueProperty">label</Property>
+          <Property name="keyProperty">value</Property>
+        </Property>
       </PropertyDef>
     </DataType>
   </Model>
@@ -335,6 +351,19 @@ dialog.show();
           <Children>
             <ToolBar>
               <ToolBarButton>
+                <ClientEvent name="onClick">var currentData = view.get(&quot;#dsProject&quot;).getData(&quot;#.rfImg&quot;);
+var projectId = view.get(&quot;#dsProject&quot;).getData(&quot;#.projectId&quot;);
+if(!projectId){
+	dorado.MessageBox.alert(&quot;请添加项目后,再进行添加图片!&quot;);	
+} else {
+	currentData.insert({
+		&quot;projectId&quot;:projectId
+	});
+}
+var dialog = view.get(&quot;#imgDetailDialog&quot;);
+dialog.set(&quot;caption&quot;,&quot;新增图片&quot;);
+dialog.show();
+</ClientEvent>
                 <Property name="caption">添加</Property>
                 <Property name="icon">url(>skin>common/icons.gif) -120px 0px</Property>
               </ToolBarButton>
@@ -343,12 +372,15 @@ dialog.show();
                 <Property name="icon">url(>skin>common/icons.gif) -140px 0px</Property>
               </ToolBarButton>
               <ToolBarButton>
-                <ClientEvent name="onClick">view.get(&quot;#imgDetailDialog&quot;).show();
+                <ClientEvent name="onClick">view.get(&quot;#imgDetailDialog&quot;).set(&quot;caption&quot;,&quot;编辑图片&quot;);
+view.get(&quot;#imgDetailDialog&quot;).show();
 </ClientEvent>
                 <Property name="caption">编辑图片</Property>
                 <Property name="icon">url(>skin>common/icons.gif) -200px 0px</Property>
               </ToolBarButton>
               <ToolBarButton>
+                <ClientEvent name="onClick">view.get(&quot;#imgOrderDialog&quot;).show();
+</ClientEvent>
                 <Property name="caption">编辑排序</Property>
                 <Property name="icon">url(>skin>common/icons.gif) -280px -180px</Property>
               </ToolBarButton>
@@ -357,6 +389,10 @@ dialog.show();
               <Property name="dataSet">dsProject</Property>
               <Property name="dataPath">#.rfImg</Property>
               <Property name="rowHeight">50</Property>
+              <DataColumn name="state">
+                <Property name="property">state</Property>
+                <Property name="readOnly">true</Property>
+              </DataColumn>
               <DataColumn name="imgFile">
                 <ClientEvent name="onRenderCell">//var path = &quot;${request.getContextPath()}&quot;;
 $(arg.dom).empty().xCreate(
@@ -522,7 +558,10 @@ dialog.hide();</ClientEvent>
 var currentData = view.get(&quot;#dsProject&quot;).getData(&quot;#.#rfImg&quot;);
 var path = &quot;${request.getContextPath()}&quot;;
 htmlContainer.set(&quot;content&quot;,&quot;&lt;div style='text-align:center;'>&lt;img id='preDetailImg' src='&quot;+path+currentData.get(&quot;imgFile&quot;)+&quot;' style='width: 450px; height: 330px;margin: 2px' />&lt;div/>&quot;);</ClientEvent>
-      <Property name="height">500</Property>
+      <ClientEvent name="onHide">var rfImg = view.get(&quot;#dsProject&quot;).getData(&quot;#.rfImg&quot;);
+rfImg.flushAsync();
+</ClientEvent>
+      <Property name="height">450</Property>
       <Property name="width">750</Property>
       <Property name="caption">编辑图片</Property>
       <Buttons>
@@ -532,6 +571,16 @@ htmlContainer.set(&quot;content&quot;,&quot;&lt;div style='text-align:center;'>&
           <Property name="icon">url(>skin>common/icons.gif) -280px 0px</Property>
         </Button>
         <Button>
+          <ClientEvent name="onClick">var action = view.get(&quot;#imgSaveAjax&quot;);
+var currentData = view.get(&quot;#dsProject&quot;).getData(&quot;#.#rfImg&quot;);
+if(!currentData.get(&quot;imgFile&quot;)){
+	dorado.MessageBox.alert(&quot;请先上传图片然后进行保存!&quot;);	
+} else {
+	action.set(&quot;parameter&quot;,currentData).execute(function(){
+		view.get(&quot;#imgDetailDialog&quot;).hide();
+	});
+}
+</ClientEvent>
           <Property name="caption">保存</Property>
           <Property name="icon">url(>skin>common/icons.gif) -20px 0px</Property>
         </Button>
@@ -553,6 +602,70 @@ dialog.hide();</ClientEvent>
       </Children>
       <Tools/>
     </Dialog>
+    <Dialog id="imgOrderDialog">
+      <Property name="width">600</Property>
+      <Property name="height">400</Property>
+      <Buttons>
+        <Button>
+          <Property name="caption">保存</Property>
+          <Property name="icon">url(>skin>common/icons.gif) -20px 0px</Property>
+        </Button>
+        <Button>
+          <ClientEvent name="onClick">var dialog = view.get(&quot;#imgOrderDialog&quot;);
+dialog.hide();</ClientEvent>
+          <Property name="caption">取消</Property>
+          <Property name="icon">url(>skin>common/icons.gif) -40px 0px</Property>
+        </Button>
+      </Buttons>
+      <Children>
+        <DataGrid>
+          <Property name="dataSet">dsProject</Property>
+          <Property name="dataPath">#.rfImg</Property>
+          <Property name="rowHeight">50</Property>
+          <DataColumn name="imgOrder">
+            <Property name="property">imgOrder</Property>
+          </DataColumn>
+          <DataColumn name="state">
+            <Property name="property">state</Property>
+            <Property name="readOnly">true</Property>
+          </DataColumn>
+          <DataColumn name="imgFile">
+            <ClientEvent name="onRenderCell">//var path = &quot;${request.getContextPath()}&quot;;
+$(arg.dom).empty().xCreate(
+		{
+			tagName : &quot;IMG&quot;,
+			src : $url(&quot;>&quot;
+					+ arg.data.get(&quot;imgFile&quot;) ),
+			style : &quot;width: 64px; height: 64px;margin: 2px&quot;
+		});
+
+dorado.TipManager.initTip(arg.dom.parentNode, {
+	content : {
+		tagName : &quot;IMG&quot;,
+		src : $url(&quot;>&quot;
+				+ arg.data.get(&quot;imgFile&quot;) ),
+		style : &quot;width: 128px; height: 128px; margin: 8px&quot;
+	},
+	arrowDirection : &quot;top&quot;,
+	arrowAlign : &quot;left&quot;
+});</ClientEvent>
+            <Property name="property">imgFile</Property>
+            <Property name="readOnly">true</Property>
+            <Property name="caption">图片</Property>
+            <Property name="width">100</Property>
+          </DataColumn>
+          <DataColumn name="creator">
+            <Property name="property">creator</Property>
+            <Property name="readOnly">true</Property>
+          </DataColumn>
+          <DataColumn name="createTime">
+            <Property name="property">createTime</Property>
+            <Property name="readOnly">true</Property>
+          </DataColumn>
+        </DataGrid>
+      </Children>
+      <Tools/>
+    </Dialog>
     <AjaxAction id="descAjax">
       <Property name="service">projectInfoPr#saveDetail</Property>
     </AjaxAction>
@@ -565,13 +678,14 @@ dialog.hide();</ClientEvent>
     <AjaxAction id="infoAjax"/>
     <UploadAction id="imgUpload">
       <ClientEvent name="onFileUploaded">var file = arg.returnValue;
-var currentData = view.get(&quot;#dsHomePage&quot;).getData(&quot;#&quot;);
+var currentData = view.get(&quot;#dsProject&quot;).getData(&quot;#.#rfImg&quot;);
 currentData.set(&quot;imgFile&quot;,file);
 var htmlContainer = view.get(&quot;#imgHtml&quot;);
 var path = &quot;${request.getContextPath()}&quot;;
-htmlContainer.set(&quot;content&quot;,&quot;&lt;div style='text-align:center;'>&lt;img id='preShowImg' src='&quot;+path+currentData.get(&quot;imgFile&quot;)+&quot;' style='width: 450px; height: 330px;margin: 2px' />&lt;div/>&quot;);
+htmlContainer.set(&quot;content&quot;,&quot;&lt;div style='text-align:center;'>&lt;img id='preDetailImg' src='&quot;+path+currentData.get(&quot;imgFile&quot;)+&quot;' style='width: 450px; height: 330px;margin: 2px' />&lt;div/>&quot;);
 
 </ClientEvent>
+      <Property name="fileResolver">projectInfoPr#uploadDetailImg</Property>
       <Filters>
         <Filter>
           <Property name="title">Image File</Property>
@@ -579,5 +693,8 @@ htmlContainer.set(&quot;content&quot;,&quot;&lt;div style='text-align:center;'>&
         </Filter>
       </Filters>
     </UploadAction>
+    <AjaxAction id="imgSaveAjax">
+      <Property name="service">projectInfoPr#saveImgDetail</Property>
+    </AjaxAction>
   </View>
 </ViewConfig>
