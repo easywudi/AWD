@@ -33,8 +33,49 @@
 				autoArrows:  false,                           // disable generation of arrow mark-up 
         		dropShadows: false                            // disable drop shadows 
 			});
-			
 		});
+  	
+		$(document).ready(function(){
+			//init img resize
+			var imgs = $(".divImg img");
+			debugger;
+			for(var i=0;i<imgs.length;i++){
+				autoResizeImg(600,600,imgs[i]);
+			}			
+		});  		
+  	
+  		function autoResizeImg(maxWidth,maxHeight,objImg){
+  			var img = new Image();
+  			img.src = objImg.src;
+  			var hratio;
+  			var wratio;
+  			var ratio = 1;
+  			var w = img.width;
+  			var h = img.height;
+  			wratio = maxWidth/w;
+  			hratio = maxHeight/h;
+  			if(maxWidth ==0 && maxHeight ==0){
+  				ratio = 1;
+  			} else if (maxWidth ==0) {
+  				if(hratio < 1){
+  					ratio = hratio;
+  				}
+  			} else if (maxHeight ==0){
+  				if(wratio < 0){
+  					 ratio = wratio;
+  				} 
+  			} else if(wratio < 1 || hratio < 1) {
+  				ratio = (wratio<=hratio?wratio:hratio);
+  			}
+  			if(ratio < 1){
+  				w = w*ratio;
+  				h = h*ratio;
+  			}
+  			objImg.height = h;
+  			objImg.width = w;
+  		}
+  		
+  		
 </script>
 
 </head>
@@ -88,7 +129,7 @@
 						<div id="post-136" class="post-136 portfolio type-portfolio hentry post">
 							<article class="single-post">
 								<h1>图片详情</h1>
-								<div class="">
+								<div class="divImg">
 									
 									<%
 										for(ProjectImg pi : list){ %>
@@ -113,22 +154,6 @@
 							<%	
 								}
 							%>
-<!-- 							<li class="cycle_item"> -->
-<!-- 								<h4><a href="#">保 质 期</a></h4> -->
-<!-- 									<label>铝合金永不生锈，非自然灾害、非人为，主材保用20年（只要玻璃不破，都可以长期使用）！</label>  -->
-<!-- 							</li> -->
-<!-- 							<li class="cycle_item"> -->
-<!-- 								<h4><a href="#">适用场所</a></h4> -->
-<!-- 									<label>广泛适合于厨房 书房，房间隔断等 </label> -->
-<!-- 							</li> -->
-<!-- 							<li class="cycle_item"> -->
-<!-- 								<h4><a href="#">铝 合 金</a></h4> -->
-<!-- 									<label>铝合金门是将表面处理过的铝合金型材，经过开料、打孔、铣槽、攻丝、制作等加工流程制作成门框、门扇构件，再用连接件、密封材料和开闭五金配件一起组合拼装而成的整套门。</label>  -->
-<!-- 							</li> -->
-<!-- 							<li class="cycle_item"> -->
-<!-- 								<h4><a href="#">玻   璃</a></h4> -->
-<!-- 									<label>普通玻璃4+4mm。有磨沙，蒙沙，格条，镜花，白玻等优美的工艺玻璃，让您的空间充满艺术感及幽雅的格调！玻璃款式可以随便搭配喜欢什么款式就订做什么款式。     钢化玻璃每平方成本高30元。 钢化玻璃强度是普通玻璃的3~5倍，可承受一定能量的外来撞击或温差变化而不破碎，即使破碎，也是整块玻璃碎成类似蜂窝状钝角小颗粒，不易伤人 。</label>   -->
-<!-- 							</li> -->
 						</ul>
 					</div>   
 				</aside> 
