@@ -343,6 +343,8 @@ dialog.show();
                 <Property name="icon">url(>skin>common/icons.gif) -140px 0px</Property>
               </ToolBarButton>
               <ToolBarButton>
+                <ClientEvent name="onClick">view.get(&quot;#imgDetailDialog&quot;).show();
+</ClientEvent>
                 <Property name="caption">编辑图片</Property>
                 <Property name="icon">url(>skin>common/icons.gif) -200px 0px</Property>
               </ToolBarButton>
@@ -515,6 +517,42 @@ dialog.hide();</ClientEvent>
       </Children>
       <Tools/>
     </Dialog>
+    <Dialog id="imgDetailDialog">
+      <ClientEvent name="onShow">var htmlContainer = view.get(&quot;#imgHtml&quot;);
+var currentData = view.get(&quot;#dsProject&quot;).getData(&quot;#.#rfImg&quot;);
+var path = &quot;${request.getContextPath()}&quot;;
+htmlContainer.set(&quot;content&quot;,&quot;&lt;div style='text-align:center;'>&lt;img id='preDetailImg' src='&quot;+path+currentData.get(&quot;imgFile&quot;)+&quot;' style='width: 450px; height: 330px;margin: 2px' />&lt;div/>&quot;);</ClientEvent>
+      <Property name="height">500</Property>
+      <Property name="width">750</Property>
+      <Property name="caption">编辑图片</Property>
+      <Buttons>
+        <Button id="btnUpload">
+          <Property name="caption">上传图片</Property>
+          <Property name="action">imgUpload</Property>
+          <Property name="icon">url(>skin>common/icons.gif) -280px 0px</Property>
+        </Button>
+        <Button>
+          <Property name="caption">保存</Property>
+          <Property name="icon">url(>skin>common/icons.gif) -20px 0px</Property>
+        </Button>
+        <Button>
+          <ClientEvent name="onClick">var dialog = view.get(&quot;#imgDetailDialog&quot;);
+dialog.hide();</ClientEvent>
+          <Property name="caption">取消</Property>
+          <Property name="icon">url(>skin>common/icons.gif) -40px 0px</Property>
+        </Button>
+      </Buttons>
+      <Children>
+        <Panel>
+          <Buttons/>
+          <Children>
+            <HtmlContainer id="imgHtml"/>
+          </Children>
+          <Tools/>
+        </Panel>
+      </Children>
+      <Tools/>
+    </Dialog>
     <AjaxAction id="descAjax">
       <Property name="service">projectInfoPr#saveDetail</Property>
     </AjaxAction>
@@ -525,6 +563,21 @@ dialog.hide();</ClientEvent>
       <Property name="service">projectInfoPr#saveOrderDetail</Property>
     </AjaxAction>
     <AjaxAction id="infoAjax"/>
-    <AjaxAction id="imgAjax"/>
+    <UploadAction id="imgUpload">
+      <ClientEvent name="onFileUploaded">var file = arg.returnValue;
+var currentData = view.get(&quot;#dsHomePage&quot;).getData(&quot;#&quot;);
+currentData.set(&quot;imgFile&quot;,file);
+var htmlContainer = view.get(&quot;#imgHtml&quot;);
+var path = &quot;${request.getContextPath()}&quot;;
+htmlContainer.set(&quot;content&quot;,&quot;&lt;div style='text-align:center;'>&lt;img id='preShowImg' src='&quot;+path+currentData.get(&quot;imgFile&quot;)+&quot;' style='width: 450px; height: 330px;margin: 2px' />&lt;div/>&quot;);
+
+</ClientEvent>
+      <Filters>
+        <Filter>
+          <Property name="title">Image File</Property>
+          <Property name="extensions">jpg,jpeg</Property>
+        </Filter>
+      </Filters>
+    </UploadAction>
   </View>
 </ViewConfig>
