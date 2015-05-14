@@ -12,6 +12,7 @@
       <PropertyDef name="projectName">
         <Property name="dataType">String</Property>
         <Property name="label">产品名称</Property>
+        <Property name="required">true</Property>
       </PropertyDef>
       <PropertyDef name="projectType">
         <Property name="dataType">String</Property>
@@ -20,6 +21,7 @@
       <PropertyDef name="projectAbout">
         <Property name="dataType">String</Property>
         <Property name="label">产品简介</Property>
+        <Property name="required">true</Property>
       </PropertyDef>
       <PropertyDef name="imgFile">
         <Property name="dataType">String</Property>
@@ -190,32 +192,48 @@
             <Property name="dataSet">dsProject</Property>
           </DataPilot>
           <ToolBarButton>
+            <ClientEvent name="onClick">var dialog = view.get(&quot;#projectDialog&quot;);
+var data = view.get(&quot;#dsProject&quot;).getData();
+data.insert({});
+dialog.show();
+</ClientEvent>
             <Property name="caption">添加</Property>
             <Property name="icon">url(>skin>common/icons.gif) -120px 0px</Property>
           </ToolBarButton>
           <ToolBarButton>
+            <ClientEvent name="onClick">var action = view.get(&quot;#delProjectInfoAjax&quot;);
+var projectId = view.get(&quot;#dsProject&quot;).getData(&quot;#.#projectId&quot;);
+if(!projectId){
+	dorado.MessageBox.alert(&quot;暂无描述删除!&quot;);
+} else {
+	dorado.MessageBox.confirm(&quot;确定删除该条描述?&quot;,function(){
+		action.set(&quot;parameter&quot;,projectId).execute(function(){
+			view.get(&quot;#dsProject&quot;).getData().flushAsync();
+		});
+	});
+}
+</ClientEvent>
             <Property name="caption">删除</Property>
             <Property name="icon">url(>skin>common/icons.gif) -140px 0px</Property>
           </ToolBarButton>
           <ToolBarButton>
+            <ClientEvent name="onClick">var dialog = view.get(&quot;#projectDialog&quot;);
+dialog.show();</ClientEvent>
             <Property name="caption">编辑图文</Property>
             <Property name="icon">url(>skin>common/icons.gif) -200px 0px</Property>
-          </ToolBarButton>
-          <ToolBarButton>
-            <Property name="caption">编辑排序</Property>
-            <Property name="icon">url(>skin>common/icons.gif) -280px -180px</Property>
           </ToolBarButton>
         </ToolBar>
         <DataGrid id="dgProject">
           <Property name="dataSet">dsProject</Property>
           <Property name="rowHeight">50</Property>
+          <DataColumn name="state">
+            <Property name="property">state</Property>
+            <Property name="width">100</Property>
+          </DataColumn>
           <DataColumn name="projectName">
             <Property name="property">projectName</Property>
             <Property name="readOnly">true</Property>
-          </DataColumn>
-          <DataColumn name="projectType">
-            <Property name="property">projectType</Property>
-            <Property name="readOnly">true</Property>
+            <Property name="width">200</Property>
           </DataColumn>
           <DataColumn name="projectAbout">
             <Property name="property">projectAbout</Property>
@@ -250,10 +268,12 @@ dorado.TipManager.initTip(arg.dom.parentNode, {
           <DataColumn name="creator">
             <Property name="property">creator</Property>
             <Property name="readOnly">true</Property>
+            <Property name="width">120</Property>
           </DataColumn>
           <DataColumn name="createTime">
             <Property name="property">createTime</Property>
             <Property name="readOnly">true</Property>
+            <Property name="width">120</Property>
           </DataColumn>
         </DataGrid>
       </Children>
@@ -368,6 +388,18 @@ dialog.show();
                 <Property name="icon">url(>skin>common/icons.gif) -120px 0px</Property>
               </ToolBarButton>
               <ToolBarButton>
+                <ClientEvent name="onClick">var action = view.get(&quot;#imgDelAjax&quot;);
+var imgId = view.get(&quot;#dsProject&quot;).getData(&quot;#.#rfImg.imgId&quot;);
+if(!imgId){
+	dorado.MessageBox.alert(&quot;暂无明细图片删除!&quot;);
+} else {
+	dorado.MessageBox.confirm(&quot;确定删除该图片?&quot;,function(){
+		action.set(&quot;parameter&quot;,imgId).execute(function(){
+			view.get(&quot;#dsProject&quot;).getData(&quot;#.rfImg&quot;).flushAsync();
+		});
+	});
+}
+</ClientEvent>
                 <Property name="caption">删除</Property>
                 <Property name="icon">url(>skin>common/icons.gif) -140px 0px</Property>
               </ToolBarButton>
@@ -497,6 +529,65 @@ dialog.hide();</ClientEvent>
       </Children>
       <Tools/>
     </Dialog>
+    <Dialog id="projectDialog">
+      <ClientEvent name="onShow">var htmlContainer = view.get(&quot;#htmlImg&quot;);
+var currentData = view.get(&quot;#dsProject&quot;).getData(&quot;#.#&quot;);
+var path = &quot;${request.getContextPath()}&quot;;
+htmlContainer.set(&quot;content&quot;,&quot;&lt;div style='text-align:center;'>&lt;img id='preDetailImg' src='&quot;+path+currentData.get(&quot;imgFile&quot;)+&quot;' style='width: 240px; height: 200px;margin: 2px' />&lt;div/>&quot;);</ClientEvent>
+      <ClientEvent name="onHide">view.get(&quot;#dsProject&quot;).getData().flushAsync();
+</ClientEvent>
+      <Property name="height">450</Property>
+      <Property name="width">750</Property>
+      <Buttons>
+        <Button id="btnsUpload">
+          <Property name="caption">上传图片</Property>
+          <Property name="action">projectImgUpload</Property>
+          <Property name="icon">url(>skin>common/icons.gif) -280px 0px</Property>
+        </Button>
+        <Button>
+          <ClientEvent name="onClick">var dsProject = view.get(&quot;#dsProject&quot;).getData(&quot;#&quot;);
+var dialog = view.get(&quot;#projectDialog&quot;);
+
+//TODO 
+var action = view.get(&quot;#projectInfoAjax&quot;);
+if(dsProject.validate() == 'ok'){
+	action.set(&quot;parameter&quot;,dsProject).execute(function(){
+		dialog.hide();
+	});
+} else {
+	dorado.MessageBox.alert(&quot;请填写完整并上传图片!&quot;);
+}
+</ClientEvent>
+          <Property name="caption">保存</Property>
+          <Property name="icon">url(>skin>common/icons.gif) -20px 0px</Property>
+        </Button>
+        <Button>
+          <ClientEvent name="onClick">var dialog = view.get(&quot;#projectDialog&quot;);
+dialog.hide();</ClientEvent>
+          <Property name="caption">取消</Property>
+          <Property name="icon">url(>skin>common/icons.gif) -40px 0px</Property>
+        </Button>
+      </Buttons>
+      <Children>
+        <AutoForm>
+          <Property name="dataSet">dsProject</Property>
+          <Property name="dataPath">#</Property>
+          <Property name="cols">*</Property>
+          <AutoFormElement>
+            <Property name="name">projectName</Property>
+            <Property name="property">projectName</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">projectAbout</Property>
+            <Property name="property">projectAbout</Property>
+            <Editor/>
+          </AutoFormElement>
+        </AutoForm>
+        <HtmlContainer id="htmlImg"/>
+      </Children>
+      <Tools/>
+    </Dialog>
     <Dialog id="orderDescDialog">
       <ClientEvent name="onHide">var currentData = view.get(&quot;#dsProject&quot;).getData(&quot;#.rfDetail&quot;);
 currentData.flushAsync();
@@ -603,10 +694,19 @@ dialog.hide();</ClientEvent>
       <Tools/>
     </Dialog>
     <Dialog id="imgOrderDialog">
+      <ClientEvent name="onHide">var rfImg = view.get(&quot;#dsProject&quot;).getData(&quot;#.rfImg&quot;);
+rfImg.flushAsync();
+</ClientEvent>
       <Property name="width">600</Property>
       <Property name="height">400</Property>
       <Buttons>
         <Button>
+          <ClientEvent name="onClick">var action = view.get(&quot;#imgOrderAjax&quot;);
+var allData = view.get(&quot;#dsProject&quot;).getData(&quot;#.rfImg&quot;);
+var dialog = view.get(&quot;#imgOrderDialog&quot;);
+action.set(&quot;parameter&quot;,allData).execute(function(){
+	dialog.hide();
+});</ClientEvent>
           <Property name="caption">保存</Property>
           <Property name="icon">url(>skin>common/icons.gif) -20px 0px</Property>
         </Button>
@@ -675,7 +775,26 @@ dorado.TipManager.initTip(arg.dom.parentNode, {
     <AjaxAction id="orderDescAjax">
       <Property name="service">projectInfoPr#saveOrderDetail</Property>
     </AjaxAction>
-    <AjaxAction id="infoAjax"/>
+    <AjaxAction id="projectInfoAjax">
+      <Property name="service">projectInfoPr#saveProject</Property>
+    </AjaxAction>
+    <UploadAction id="projectImgUpload">
+      <ClientEvent name="onFileUploaded">var file = arg.returnValue;
+var currentData = view.get(&quot;#dsProject&quot;).getData(&quot;#.#&quot;);
+currentData.set(&quot;imgFile&quot;,file);
+var htmlContainer = view.get(&quot;#htmlImg&quot;);
+var path = &quot;${request.getContextPath()}&quot;;
+htmlContainer.set(&quot;content&quot;,&quot;&lt;div style='text-align:center;'>&lt;img id='preDetailImg' src='&quot;+path+currentData.get(&quot;imgFile&quot;)+&quot;' style='width: 240px; height: 200px;margin: 2px' />&lt;div/>&quot;);
+
+</ClientEvent>
+      <Property name="fileResolver">projectInfoPr#uploadDetailImg</Property>
+      <Filters>
+        <Filter>
+          <Property name="title">Image File</Property>
+          <Property name="extensions">jpg,jpeg</Property>
+        </Filter>
+      </Filters>
+    </UploadAction>
     <UploadAction id="imgUpload">
       <ClientEvent name="onFileUploaded">var file = arg.returnValue;
 var currentData = view.get(&quot;#dsProject&quot;).getData(&quot;#.#rfImg&quot;);
@@ -695,6 +814,15 @@ htmlContainer.set(&quot;content&quot;,&quot;&lt;div style='text-align:center;'>&
     </UploadAction>
     <AjaxAction id="imgSaveAjax">
       <Property name="service">projectInfoPr#saveImgDetail</Property>
+    </AjaxAction>
+    <AjaxAction id="imgDelAjax">
+      <Property name="service">projectInfoPr#delImgDetail</Property>
+    </AjaxAction>
+    <AjaxAction id="imgOrderAjax">
+      <Property name="service">projectInfoPr#saveOrderImg</Property>
+    </AjaxAction>
+    <AjaxAction id="delProjectInfoAjax">
+      <Property name="service">projectInfoPr#delProjectInfo</Property>
     </AjaxAction>
   </View>
 </ViewConfig>

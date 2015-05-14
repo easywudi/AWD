@@ -35,14 +35,13 @@
 			});
 		});
   	
-		$(document).ready(function(){
-			//init img resize
-			var imgs = $(".divImg img");
-			debugger;
-			for(var i=0;i<imgs.length;i++){
-				autoResizeImg(600,600,imgs[i]);
-			}			
-		});  		
+// 		$(document).ready(function(){
+// 			//init img resize
+// 			var imgs = $(".divImg img");
+// 			for(var i=0;i<imgs.length;i++){
+// 				autoResizeImg(600,600,imgs[i]);
+// 			}			
+// 		});  		
   	
   		function autoResizeImg(maxWidth,maxHeight,objImg){
   			var img = new Image();
@@ -133,7 +132,9 @@
 									
 									<%
 										for(ProjectImg pi : list){ %>
-											<img  src="<%=path+pi.getImgFile() %>" class="attachment-post-thumbnail wp-post-image" style="margin-bottom: 20px">
+											<img  src="<%=path+pi.getImgFile() %>" 
+												class="attachment-post-thumbnail wp-post-image" 
+												style="margin-bottom: 20px" onload="autoResizeImg(600,600,this)">
 									<%
 										}	
 									%>

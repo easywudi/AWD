@@ -103,6 +103,16 @@ public class ProjectInfoPr extends CoreJdbcDao {
 	}
 	
 	@Expose
+	public void saveOrderImg(List<ProjectImg> list) throws Exception {
+		if(list!=null){
+			for(ProjectImg pd : list){
+				String sql = "UPDATE PROJECT_IMG SET IMG_ORDER = '"+pd.getImgOrder()+"' WHERE IMG_ID = '"+pd.getImgId()+"'";
+				this.getJdbcTemplate().update(sql);
+			}
+		}
+	}
+	
+	@Expose
 	public void deleteDetail(String id) throws Exception {
 		if(StringUtils.hasText(id)){
 			String sql = "UPDATE PROJECT_DESC SET STATE = '"+AwdConstants.NO+"' WHERE PROJECT_DESC_ID = '"+id+"'";
@@ -137,6 +147,39 @@ public class ProjectInfoPr extends CoreJdbcDao {
 					+ " VALUES ('"+AwdUtils.getUUID()+"','"+imgFile+"','"+pi.getProjectId()+"','"+ContextHolder.getLoginUserName()+"',NOW(),'"+AwdConstants.YES+"','"+0+"')";
 		}
 		this.getJdbcTemplate().update(sql);		
+	}
+	
+	@Expose
+	public void saveProject(ProjectInfo pi) throws Exception {
+		String projectId = pi.getProjectId();
+		String imgFile = pi.getImgFile();
+		String projectName = pi.getProjectName();
+		String projectAbout = pi.getProjectAbout();
+		String sql = "";
+		if(StringUtils.hasText(projectId)) {
+			sql = "UPDATE PROJECT_INFO SET IMG_FILE='"+imgFile+"',PROJECT_NAME='"+projectName+"',PROJECT_ABOUT='"+projectAbout+"' WHERE PROJECT_ID='"+projectId+"'";
+		} else {
+			sql = "INSERT INTO PROJECT_INFO (PROJECT_ID,IMG_FILE,PROJECT_NAME,PROJECT_ABOUT,CREATOR,CREATE_TIME,STATE)"
+					+ " VALUES ('"+AwdUtils.getUUID()+"','"+imgFile+"','"+projectName+"','"+projectAbout+"','"+ContextHolder.getLoginUserName()+"',NOW(),'"+AwdConstants.YES+"')";
+		}
+		this.getJdbcTemplate().update(sql);		
+	}
+	
+	@Expose
+	public void delImgDetail(String id) throws Exception {
+		if(StringUtils.hasText(id)){
+			String sql = "UPDATE PROJECT_IMG SET STATE = '"+AwdConstants.NO+"' WHERE IMG_ID = '"+id+"'";
+			this.getJdbcTemplate().update(sql);
+		}
+	}
+	
+	
+	@Expose
+	public void delProjectInfo(String id) throws Exception {
+		if(StringUtils.hasText(id)){
+			String sql = "UPDATE PROJECT_INFO SET STATE = '"+AwdConstants.NO+"' WHERE PROJECT_ID = '"+id+"'";
+			this.getJdbcTemplate().update(sql);
+		}
 	}
 	
 }
