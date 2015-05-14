@@ -24,6 +24,7 @@
 		<property name="username" value="root" />
 		<property name="password" value="crazy81" />
 		
+		
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="minIdle" value="10" />
 		<property name="maxActive" value="20" />
